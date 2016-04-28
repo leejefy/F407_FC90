@@ -1,0 +1,15 @@
+.\objects\madhwcntl.o: ..\USER\phy\src\driver\madHwCntl.c
+.\objects\madhwcntl.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\h\driver\madHwCntl.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApi.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madhwcntl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madhwcntl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\h\madApi\madApiInternal.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\h\platform\madSmiIf.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApi.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\h\platform\madSem.h
+.\objects\madhwcntl.o: ..\USER\phy\Include\madApi.h

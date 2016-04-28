@@ -1,0 +1,17 @@
+.\objects\gtportstat.o: ..\USER\switch\src\msapi\gtPortStat.c
+.\objects\gtportstat.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtportstat.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtportstat.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtportstat.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtportstat.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtportstat.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtportstat.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtportstat.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApiPrototype.h
+.\objects\gtportstat.o: ..\USER\switch\Include\h\driver\gtHwCntl.h
+.\objects\gtportstat.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportstat.o: ..\USER\switch\Include\h\driver\gtDrvSwRegs.h

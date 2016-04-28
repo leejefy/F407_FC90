@@ -1,0 +1,14 @@
+.\objects\gtutils.o: ..\USER\switch\src\msapi\gtUtils.c
+.\objects\gtutils.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtutils.o: ..\USER\switch\Include\msApi.h
+.\objects\gtutils.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtutils.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtutils.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtutils.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtutils.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtutils.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtutils.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtutils.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtutils.o: ..\USER\switch\Include\msApiPrototype.h

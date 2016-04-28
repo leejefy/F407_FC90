@@ -1,0 +1,17 @@
+.\objects\gtportpav.o: ..\USER\switch\src\msapi\gtPortPav.c
+.\objects\gtportpav.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtportpav.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtportpav.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtportpav.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtportpav.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtportpav.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtportpav.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtportpav.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApiPrototype.h
+.\objects\gtportpav.o: ..\USER\switch\Include\h\driver\gtHwCntl.h
+.\objects\gtportpav.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportpav.o: ..\USER\switch\Include\h\driver\gtDrvSwRegs.h

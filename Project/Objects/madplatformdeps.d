@@ -1,0 +1,13 @@
+.\objects\madplatformdeps.o: ..\USER\phy\src\platform\madPlatformDeps.c
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApi.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madplatformdeps.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madplatformdeps.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\h\driver\madHwCntl.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApi.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\h\platform\madPlatformDeps.h
+.\objects\madplatformdeps.o: ..\USER\phy\Include\madApi.h

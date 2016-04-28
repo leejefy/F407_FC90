@@ -1,0 +1,17 @@
+.\objects\madvctalt.o: ..\USER\phy\src\madapi\madVctAlt.c
+.\objects\madvctalt.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApi.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madvctalt.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madvctalt.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\madApi\madApiInternal.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\driver\madHwCntl.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApi.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\driver\madDrvConfig.h
+.\objects\madvctalt.o: ..\USER\phy\Include\madApi.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h
+.\objects\madvctalt.o: ..\USER\phy\Include\h\madApi\madSMVct.h

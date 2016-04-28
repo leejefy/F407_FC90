@@ -1,0 +1,9 @@
+.\objects\madutils.o: ..\USER\phy\src\driver\madUtils.c
+.\objects\madutils.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madutils.o: ..\USER\phy\Include\madApi.h
+.\objects\madutils.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madutils.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madutils.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madutils.o: ..\USER\phy\Include\madApiPrototype.h

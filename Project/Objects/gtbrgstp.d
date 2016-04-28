@@ -1,0 +1,17 @@
+.\objects\gtbrgstp.o: ..\USER\switch\src\msapi\gtBrgStp.c
+.\objects\gtbrgstp.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApi.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtbrgstp.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtbrgstp.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtbrgstp.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtbrgstp.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtbrgstp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtbrgstp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApiPrototype.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\h\driver\gtHwCntl.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\msApi.h
+.\objects\gtbrgstp.o: ..\USER\switch\Include\h\driver\gtDrvSwRegs.h

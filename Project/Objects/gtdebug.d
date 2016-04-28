@@ -1,0 +1,14 @@
+.\objects\gtdebug.o: ..\USER\switch\src\platform\gtDebug.c
+.\objects\gtdebug.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtdebug.o: ..\USER\switch\Include\msApi.h
+.\objects\gtdebug.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtdebug.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtdebug.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtdebug.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtdebug.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtdebug.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtdebug.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtdebug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtdebug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtdebug.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtdebug.o: ..\USER\switch\Include\msApiPrototype.h

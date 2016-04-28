@@ -1,0 +1,11 @@
+.\objects\madsem.o: ..\USER\phy\src\platform\madSem.c
+.\objects\madsem.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madsem.o: ..\USER\phy\Include\madApi.h
+.\objects\madsem.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madsem.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madsem.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madsem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madsem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madsem.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madsem.o: ..\USER\phy\Include\h\platform\madSem.h
+.\objects\madsem.o: ..\USER\phy\Include\madApi.h

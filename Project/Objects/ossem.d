@@ -1,0 +1,14 @@
+.\objects\ossem.o: ..\USER\switch\sample\Initialization\osSem.c
+.\objects\ossem.o: ..\USER\switch\Include\Copyright.h
+.\objects\ossem.o: ..\USER\switch\Include\msApi.h
+.\objects\ossem.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\ossem.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\ossem.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\ossem.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\ossem.o: ..\USER\phy\Include\madCopyright.h
+.\objects\ossem.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\ossem.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\ossem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\ossem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\ossem.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\ossem.o: ..\USER\switch\Include\msApiPrototype.h

@@ -1,0 +1,9 @@
+.\objects\dhcp.o: ..\lwip-1.4.1\src\core\dhcp.c
+.\objects\dhcp.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+.\objects\dhcp.o: ..\FWLIB\STM32F4x7_ETH_Driver\inc\lwipopts.h
+.\objects\dhcp.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+.\objects\dhcp.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+.\objects\dhcp.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cc.h
+.\objects\dhcp.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cpu.h
+.\objects\dhcp.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+.\objects\dhcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

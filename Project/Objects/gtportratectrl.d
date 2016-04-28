@@ -1,0 +1,17 @@
+.\objects\gtportratectrl.o: ..\USER\switch\src\msapi\gtPortRateCtrl.c
+.\objects\gtportratectrl.o: ..\USER\switch\Include\Copyright.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApiDefs.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApiSelect.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApiTypes.h
+.\objects\gtportratectrl.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\gtportratectrl.o: ..\USER\phy\Include\madCopyright.h
+.\objects\gtportratectrl.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\gtportratectrl.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\gtportratectrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gtportratectrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\h\msApi\msApiInternal.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApiPrototype.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\h\driver\gtHwCntl.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\msApi.h
+.\objects\gtportratectrl.o: ..\USER\switch\Include\h\driver\gtDrvSwRegs.h

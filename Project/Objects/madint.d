@@ -1,0 +1,16 @@
+.\objects\madint.o: ..\USER\phy\src\madapi\madInt.c
+.\objects\madint.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madint.o: ..\USER\phy\Include\madApi.h
+.\objects\madint.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madint.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madint.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madint.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madint.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madint.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madint.o: ..\USER\phy\Include\h\madApi\madApiInternal.h
+.\objects\madint.o: ..\USER\phy\Include\h\driver\madHwCntl.h
+.\objects\madint.o: ..\USER\phy\Include\madApi.h
+.\objects\madint.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h
+.\objects\madint.o: ..\USER\phy\Include\h\driver\madDrvConfig.h
+.\objects\madint.o: ..\USER\phy\Include\madApi.h
+.\objects\madint.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h

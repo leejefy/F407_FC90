@@ -1,0 +1,16 @@
+.\objects\madpktgen.o: ..\USER\phy\src\madapi\madPktGen.c
+.\objects\madpktgen.o: ..\USER\phy\Include\madCopyright.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApi.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApiDefs.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApiTypes.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madErrorDefs.h
+.\objects\madpktgen.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\madpktgen.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApiPrototype.h
+.\objects\madpktgen.o: ..\USER\phy\Include\h\madApi\madApiInternal.h
+.\objects\madpktgen.o: ..\USER\phy\Include\h\driver\madHwCntl.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApi.h
+.\objects\madpktgen.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h
+.\objects\madpktgen.o: ..\USER\phy\Include\h\driver\madDrvConfig.h
+.\objects\madpktgen.o: ..\USER\phy\Include\madApi.h
+.\objects\madpktgen.o: ..\USER\phy\Include\h\driver\madDrvPhyRegs.h

@@ -1,0 +1,10 @@
+.\objects\def.o: ..\lwip-1.4.1\src\core\def.c
+.\objects\def.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+.\objects\def.o: ..\FWLIB\STM32F4x7_ETH_Driver\inc\lwipopts.h
+.\objects\def.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+.\objects\def.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+.\objects\def.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cc.h
+.\objects\def.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cpu.h
+.\objects\def.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+.\objects\def.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\def.o: ..\lwip-1.4.1\src\include\lwip/def.h
