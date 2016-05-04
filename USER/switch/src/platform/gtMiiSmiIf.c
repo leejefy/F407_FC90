@@ -21,9 +21,6 @@
 #include <platformDeps.h>
 #include <gtSem.h>
 
-#include "msSample.h"
-
-
 /* Local sub-functions */
 GT_BOOL qdMultiAddrRead (GT_QD_DEV* dev, unsigned int phyAddr , unsigned int MIIReg,
                         unsigned int* value);
@@ -72,7 +69,7 @@ GT_U16 miiSmiIfInit
     GT_U16 data, data1;
 
     if((status = miiSmiIfReadRegister(dev,PORT_REGS_START_ADDR,QD_REG_SWITCH_ID,&data)) != GT_OK)
-    {    	
+    {
         return 0;
     }
 
@@ -80,7 +77,6 @@ GT_U16 miiSmiIfInit
     {
         return 0;
     }
-	MSG_PRINT(("lzh 88--miiSmiIfInit data=%x,data1=%x\r\n",data,data));
 
     switch(data & 0xFF00)
     {
@@ -114,7 +110,6 @@ GT_U16 miiSmiIfInit
     {
         return 0;
     }
-	MSG_PRINT(("lzh [%s]%d--miiSmiIfInit data=%x,data1=%x\r\n",__FILE__,__LINE__,data,data1));
 
     switch(data & 0xFF00)
     {
@@ -146,16 +141,14 @@ GT_U16 miiSmiIfInit
 
     if((status = miiSmiIfReadRegister(dev,PORT_REGS_START_ADDR_8PORT,QD_REG_SWITCH_ID,&data)) != GT_OK)
     {
-    	MSG_PRINT(("lzh 55--miiSmiIfInit return 0\n"));
         return 0;
     }
 
     if((status = miiSmiIfReadRegister(dev,PORT_REGS_START_ADDR_8PORT+1,QD_REG_SWITCH_ID,&data1)) != GT_OK)
     {
-    	MSG_PRINT(("lzh 55--miiSmiIfInit return 0\n"));
         return 0;
     }
-	MSG_PRINT(("lzh aa--miiSmiIfInit data=%x\r\n",data));
+
     switch(data & 0xFF00)
     {
         case 0x0800:
@@ -185,16 +178,13 @@ GT_U16 miiSmiIfInit
 
     if((status = miiSmiIfReadRegister(dev,PORT_REGS_START_ADDR_11PORT,QD_REG_SWITCH_ID,&data)) != GT_OK)
     {
-   		MSG_PRINT(("lzh 66--miiSmiIfInit return 0\n"));
         return 0;
     }
 
     if((status = miiSmiIfReadRegister(dev,PORT_REGS_START_ADDR_11PORT+1,QD_REG_SWITCH_ID,&data1)) != GT_OK)
     {
-    	MSG_PRINT(("lzh 77--miiSmiIfInit return 0\n"));
         return 0;
     }
-	MSG_PRINT(("lzh bb--miiSmiIfInit data=%x\r\n",data));
 
     switch(data & 0xFF00)
     {
@@ -250,7 +240,6 @@ GT_U16 miiSmiManualIfInit
 
     if((status = miiSmiIfReadRegister(dev,(GT_U8)(PORT_REGS_START_ADDR+baseAddr),QD_REG_SWITCH_ID,&data)) != GT_OK)
     {
-    	MSG_PRINT(("lzh 11--miiSmiManualIfInit return 0\n"));
         return 0;
     }
 
@@ -277,7 +266,6 @@ GT_U16 miiSmiManualIfInit
 
     if((status = miiSmiIfReadRegister(dev,(GT_U8)(PORT_REGS_START_ADDR_8PORT+baseAddr),QD_REG_SWITCH_ID,&data)) != GT_OK)
     {
-    	MSG_PRINT(("lzh 22--miiSmiManualIfInit return 0\n"));
         return 0;
     }
 
@@ -305,7 +293,6 @@ GT_U16 miiSmiManualIfInit
 
     if((status = miiSmiIfReadRegister(dev,(GT_U8)(PORT_REGS_START_ADDR_11PORT+baseAddr),QD_REG_SWITCH_ID,&data)) != GT_OK)
     {
-    MSG_PRINT(("lzh 33--miiSmiManualIfInit return 0\n"));
         return 0;
     }
 
@@ -361,8 +348,7 @@ GT_STATUS miiSmiIfReadRegister
     OUT GT_U16       *data
 )
 {
-
-    unsigned int tmpData = 0;
+    unsigned int tmpData;
 #ifdef GT_RMGMT_ACCESS
     if((dev->accessMode == SMI_MULTI_ADDR_MODE) &&
        (dev->fgtHwAccessMod == HW_ACCESS_MODE_SMI))
@@ -377,15 +363,12 @@ GT_STATUS miiSmiIfReadRegister
     }
     else
     {
-    	
-        if(fgtReadMii(dev,(GT_U32)phyAddr,(GT_U32)regAddr,&tmpData) != GT_TRUE)
+         if(fgtReadMii(dev,(GT_U32)phyAddr,(GT_U32)regAddr,&tmpData) != GT_TRUE)
         {
-  			MSG_PRINT(("==33---- miiSmiIfReadRegister GT_FAIL==\r\n"));
             return GT_FAIL;
         }
     }
     *data = (GT_U16)tmpData;
-	MSG_PRINT(("- GT_OK - miiSmiIfReadRegister:=%p,phyAddr=%x,regAddr=%x,data=%x\r\n",dev,phyAddr,regAddr,*data));
     return GT_OK;
 }
 
@@ -430,7 +413,6 @@ GT_STATUS miiSmiIfWriteRegister
     {
          if(qdMultiAddrWrite(dev,(GT_U32)phyAddr,(GT_U32)regAddr,(GT_U32)data) != GT_TRUE)
         {
-        	MSG_PRINT(("lzh--miiSmiIfWriteRegister return GT_FAIL\r\n"));
             return GT_FAIL;
         }
     }
@@ -438,11 +420,9 @@ GT_STATUS miiSmiIfWriteRegister
     {
         if(fgtWriteMii(dev,(GT_U32)phyAddr,(GT_U32)regAddr,(GT_U32)data) != GT_TRUE)
         {
-        	MSG_PRINT(("lzh 11--miiSmiIfWriteRegister return GT_FAIL\r\n"));
             return GT_FAIL;
         }
     }
-	MSG_PRINT(("\n-- GT_OK --miiSmiIfWriteRegister =%p,phyAddr=%x,regAddr=%x,data=%x\r\n",dev,phyAddr,regAddr,data));
     return GT_OK;
 }
 
@@ -549,7 +529,6 @@ GT_BOOL qdMultiAddrRead (GT_QD_DEV* dev, unsigned int phyAddr , unsigned int reg
     /* first check that it is not busy */
     if(fgtReadMii(dev,(GT_U32)dev->phyAddr,(GT_U32)QD_REG_SMI_COMMAND, &smiReg) != GT_TRUE)
     {
-    	MSG_PRINT(("lzh 00--qdMultiAddrRead return GT_FALSE\n"));
         return GT_FALSE;
     }
     timeOut = QD_SMI_ACCESS_LOOP; /* initialize the loop count */
@@ -561,12 +540,10 @@ GT_BOOL qdMultiAddrRead (GT_QD_DEV* dev, unsigned int phyAddr , unsigned int reg
         {
             if(timeOut-- < 1 ) 
             {
-           	 MSG_PRINT(("lzh 11--qdMultiAddrRead return GT_FALSE\n"));
                 return GT_FALSE;
             }
             if(fgtReadMii(dev,(GT_U32)dev->phyAddr,(GT_U32)QD_REG_SMI_COMMAND, &smiReg) != GT_TRUE)
             {
-            	MSG_PRINT(("lzh 22--qdMultiAddrRead return GT_FALSE\n"));
                 return GT_FALSE;
             }
         } while (smiReg & QD_SMI_BUSY);
@@ -592,19 +569,16 @@ GT_BOOL qdMultiAddrRead (GT_QD_DEV* dev, unsigned int phyAddr , unsigned int reg
         {
             if(timeOut-- < 1 ) 
             {
-            	MSG_PRINT(("lzh 33--qdMultiAddrRead return GT_FALSE\n"));
                 return GT_FALSE;
             }
             if(fgtReadMii(dev,(GT_U32)dev->phyAddr,(GT_U32)QD_REG_SMI_COMMAND, &smiReg) != GT_TRUE)
             {
-            	MSG_PRINT(("lzh 44--qdMultiAddrRead return GT_FALSE\n"));
                 return GT_FALSE;
             }
         } while (smiReg & QD_SMI_BUSY);
     }
     if(fgtReadMii(dev,(GT_U32)dev->phyAddr,(GT_U32)QD_REG_SMI_DATA, &smiReg) != GT_TRUE)
     {
-    	MSG_PRINT(("lzh 55--qdMultiAddrRead return GT_FALSE\n"));
         return GT_FALSE;
     }
     *value = smiReg;

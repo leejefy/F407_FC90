@@ -23,7 +23,7 @@
 #endif
 
 #ifdef GT_USE_MAD
-//#include "gtPhyInt_mad.c"
+#include "gtPhyInt_mad.c"
 #endif
 /*******************************************************************************
 * gprtPhyIntEnable
@@ -83,12 +83,12 @@ IN GT_U16    intType
     GT_STATUS       retVal;      
     GT_U8           hwPort;         /* the physical port number     */
 
-
+/*
 #ifdef GT_USE_MAD
     if (dev->use_mad==GT_TRUE)
         return gprtPhyIntEnable_mad(dev, port, intType);
 #endif
-
+*/
     DBG_INFO(("gprtPhyIntEnable Called.\n"));
     
     /* translate LPORT to hardware port */

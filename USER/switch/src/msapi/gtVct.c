@@ -23,7 +23,7 @@
 #endif
 
 #ifdef GT_USE_MAD
-//#include "gtVct_mad.c"
+#include "gtVct_mad.c"
 #endif
 
 /*******************************************************************************

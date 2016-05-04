@@ -20,8 +20,6 @@
 #include <gtVct.h>
 #include <msApiDefs.h>
 
-#include "msSample.h"
-
 
 /*******************************************************************************
 * lport2port
@@ -278,30 +276,28 @@ GT_STATUS driverConfig
 {
     GT_U16          deviceId;
     GT_BOOL         highSmiDevAddr;
-	MSG_PRINT(("lzh--driverConfig called!\r\n"));
+
     if(dev->accessMode == SMI_AUTO_SCAN_MODE)
     {    
         /* Initialize the MII / SMI interface, search for the device */
         if((deviceId = miiSmiIfInit(dev,&highSmiDevAddr)) == 0)
         {
-        	MSG_PRINT(("lzh--driverConfig return GT_FAIL 11\n"));
             return GT_FAIL;
         }
-		MSG_PRINT(("lzh11--driverConfig return deviceId %x\n",deviceId));
+
         dev->baseRegAddr = (highSmiDevAddr)?0x10:0;
     }
     else
     {
         if((deviceId = miiSmiManualIfInit(dev,(GT_U32)dev->baseRegAddr)) == 0)
         {
-        	MSG_PRINT(("lzh--driverConfig return GT_FAIL 22\n"));
             return GT_FAIL;
         }
     }
+    
     /* Init the device's config struct.             */
     dev->deviceId       = deviceId >> 4;
     dev->revision       = (GT_U8)deviceId & 0xF; 
-	MSG_PRINT(("lzh22--driverConfig return deviceId %x\n",deviceId));
 
     return GT_OK;
 }

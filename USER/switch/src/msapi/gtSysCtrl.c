@@ -2659,7 +2659,6 @@ GT_STATUS gsysSetRsvd2CpuEnables
 )
 {
     GT_STATUS       retVal;         /* Functions return value.      */
-	GT_U16 i;
 
     DBG_INFO(("gsysSetRsvd2CpuEnables Called.\n"));
 
@@ -2672,7 +2671,6 @@ GT_STATUS gsysSetRsvd2CpuEnables
 
     if (IS_IN_DEV_GROUP(dev,DEV_ENHANCED_MULTICAST_1))
     {
-    	DBG_INFO(("gsysSetMonitorMgmtCtrl Called.\n"));
       retVal = gsysSetMonitorMgmtCtrl(dev,0x0, (GT_U8)(enBits&0xff));
       if(retVal != GT_OK)
 	  {
@@ -2686,19 +2684,6 @@ GT_STATUS gsysSetRsvd2CpuEnables
 	  }
       return retVal;
 	}
-	/*lzh0808*/
-	
-	for( i = 0; i < QD_REG_CUT_THROU_CTRL; i++ ){
-		retVal = hwReadGlobal2Reg(dev,i, &enBits);
-		DBG_INFO(("hwReadGlobal2Reg Called.[%02x]=%x\n",i,enBits));
-		if(retVal != GT_OK)
-		{
-		   DBG_INFO(("Failed.\n"));
-		   return retVal;
-		}
-	}
-	
-
 
     /* Set related register */
     retVal = hwWriteGlobal2Reg(dev,QD_REG_MGMT_ENABLE, (GT_U16)enBits);

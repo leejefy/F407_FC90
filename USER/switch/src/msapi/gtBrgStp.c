@@ -140,8 +140,6 @@ GT_STATUS gstpSetMode
         case GT_88E6181:
         case GT_88E6183:
         case GT_88E6093:
-		/*lzh0808 add*/	
-		case GT_88E6321:	
             dbNum = 16;
             break;
         case GT_88E6035:

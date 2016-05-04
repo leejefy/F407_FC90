@@ -370,6 +370,7 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
   {
     /* Return ERROR in case of write timeout */
     err = ETH_ERROR;
+	printf("\n\r ============ Put the PHY in reset mode ERROR\r\n");
     goto error;
   }
   
@@ -2349,10 +2350,11 @@ uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg)
   /* Return ERROR in case of timeout */
   if(timeout == PHY_READ_TO)
   {
+  	printf("\r\n ETH_ERROR ETH_ReadPHYRegister timeout= %x\r\n",timeout);
     return (uint16_t)ETH_ERROR;
   }
   
-  /* Return data register value */
+  /* Return data register value */  
   return (uint16_t)(ETH->MACMIIDR);
 }
 
@@ -2398,12 +2400,12 @@ uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHY
   /* Return ERROR in case of timeout */
   if(timeout == PHY_WRITE_TO)
   {
-  	printf("===== ETH_WritePHYRegister ETH_ERROR===\r\n");
+  	printf("\r\n===== ETH_WritePHYRegister ETH_ERROR===\r\n");
     return ETH_ERROR;
   }
 
   /* Return SUCCESS */
-  printf("===== ETH_WritePHYRegister ETH_SUCCESS===\r\n");
+  printf("\r\n===== ETH_WritePHYRegister ETH_SUCCESS===\r\n");
   return ETH_SUCCESS;  
 }
 

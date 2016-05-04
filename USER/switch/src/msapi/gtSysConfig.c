@@ -25,8 +25,6 @@
 #endif
 #include <gtHwCntl.h>
 
-#include "msSample.h"
-
 extern GT_U8 lport2port(IN GT_U16 portVec, IN GT_LPORT  port);
 extern GT_LPORT port2lport(IN GT_U16 portVec, IN GT_U8  hwPort);
 extern GT_U32 lportvec2portvec(IN GT_U16 portVec, IN GT_U32  lVec);
@@ -39,12 +37,7 @@ static MAD_BOOL madSMIRead(MAD_DEV* dev, unsigned int smiAddr,
 {
   GT_STATUS  status;
   GT_U16 data;
-  /*lzh0808 debug*/
-  DBG_INFO(("====madSMIRead===111===\r\n"));	
   status =     hwReadPhyReg((GT_QD_DEV *)(dev->swDev), smiAddr, reg, &data);
-  //status = gprtGetPhyReg((GT_QD_DEV *)(dev->swDev), smiAddr, reg, &data);
-
-  //status =     hwReadPagedPhyReg((GT_QD_DEV *)(dev->swDev),5,0, reg,0, &data);
 
   if(status == GT_OK)
   {
@@ -62,10 +55,7 @@ static MAD_BOOL madSMIWrite(MAD_DEV* dev, unsigned int smiAddr,
   GT_U16 data;
 
   data = value;
-   /*lzh0808 debug*/
-   DBG_INFO(("====madSMIWrite===111===\r\n"));	
   status =     hwWritePhyReg((GT_QD_DEV *)(dev->swDev), smiAddr, reg, data);
-  //status =     gprtSetPhyReg((GT_QD_DEV *)(dev->swDev), smiAddr, reg, data);
 
   if(status == GT_OK)
     return MAD_TRUE;
@@ -116,9 +106,6 @@ static MAD_STATUS madStart(GT_QD_DEV* qd_dev,  int smiPair)
     MAD_STATUS status = MAD_FAIL;
     MAD_DEV* dev = (MAD_DEV*)&(qd_dev->mad_dev);
     MAD_SYS_CONFIG   cfg;
-	
-	/*lzh0808*/
-	DBG_INFO(("====madStart===111===\r\n"));	
     cfg.BSPFunctions.readMii   = (FMAD_READ_MII )madSMIRead;
     cfg.BSPFunctions.writeMii  = (FMAD_WRITE_MII )madSMIWrite;
     cfg.BSPFunctions.semCreate = NULL;
@@ -129,20 +116,16 @@ static MAD_STATUS madStart(GT_QD_DEV* qd_dev,  int smiPair)
     dev->swDev = (void *)qd_dev;
 	cfg.smiBaseAddr = smiPair;  /* Set SMI Address */
 	cfg.switchType = MAD_SYS_SW_TYPE_NO;
-	
-	 DBG_INFO(("Device ID     : 0x%x\n",qd_dev->deviceId));
 	if((qd_dev->deviceId==GT_88E6320)||
-	   (qd_dev->deviceId==GT_88E6321)) 
+	   (qd_dev->deviceId==GT_88E6321))
 	{
 	  cfg.switchType = MAD_SYS_SW_TYPE_1;
 	}
-	DBG_INFO(("====lzh123===aaa===\r\n"));
 
     if((status=mdLoadDriver(&cfg, dev)) != MAD_OK)
     {
         return status;
     }
-	DBG_INFO(("====lzh123===bbb===\r\n"));
     dev->phyInfo.swPhyType = 1;  /* The Phy is part of switch*/
 
 	/* to set parameters to ports of phy ports added in switch*/
@@ -176,7 +159,8 @@ static void madClose(MAD_DEV* dev)
  GT_STATUS qd_madInit(GT_QD_DEV    *dev, int phyAddr)
 {
   MAD_STATUS    status;
-	
+
+
   status = madStart(dev, phyAddr);
   if (MAD_OK != status)
   {
@@ -303,8 +287,7 @@ GT_STATUS qdLoadDriver
 {
     GT_STATUS   retVal;
     GT_LPORT    port;
-	GT_U16 i;
-	unsigned short data1,data2;
+
     DBG_INFO(("qdLoadDriver Called.\n"));
 
     /* Check for parameters validity        */
@@ -370,8 +353,8 @@ GT_STATUS qdLoadDriver
     retVal = driverConfig(dev);
     if(retVal != GT_OK)
     {
-        DBG_INFO(("driverConfig Failed.=%d\n",retVal));
-       // return retVal;
+        DBG_INFO(("driverConfig Failed.\n"));
+        return retVal;
     }
 
     /* Initialize dev fields.         */
@@ -388,7 +371,6 @@ GT_STATUS qdLoadDriver
     if((dev->deviceId&0xfff8)==GT_88EC000) /* device id 0xc00 - 0xc07 are GT_88EC0XX */
       dev->deviceId=GT_88EC000;
 
-	DBG_INFO(("driverConfig dev->deviceId.=%x\r\n",dev->deviceId));
     switch(dev->deviceId)
     {
         case GT_88E6021:
@@ -922,7 +904,7 @@ GT_STATUS qdLoadDriver
     }
 
     dev->cpuPortNum = GT_PORT_2_LPORT(cfg->cpuPortNum);
-	DBG_INFO(("====dev->cpuPortNum = %d\r\n",dev->cpuPortNum));
+
     if(dev->cpuPortNum == GT_INVALID_PORT)
     {
         if(GT_LPORT_2_PORT((GT_LPORT)cfg->cpuPortNum) != GT_INVALID_PORT)
@@ -1056,9 +1038,8 @@ GT_STATUS qdLoadDriver
         DBG_INFO(("OK.\n"));
         return GT_OK;
     }
-	 DBG_INFO(("DEV_ENHANCED_CPU_PORT = %x , %x \r\n",DEV_ENHANCED_CPU_PORT,IS_IN_DEV_GROUP(dev,DEV_ENHANCED_CPU_PORT)));
 
-	if(IS_IN_DEV_GROUP(dev,DEV_ENHANCED_CPU_PORT))
+    if(IS_IN_DEV_GROUP(dev,DEV_ENHANCED_CPU_PORT))
     {
         if((retVal = gsysSetRsvd2CpuEnables(dev,0)) != GT_OK)
         {
@@ -1091,7 +1072,6 @@ GT_STATUS qdLoadDriver
 
     if(IS_IN_DEV_GROUP(dev,DEV_CPU_PORT))
     {
-    	DBG_INFO(("=========gsysSetCPUPort.=======\n"));
         retVal = gsysSetCPUPort(dev,dev->cpuPortNum);
         if(retVal != GT_OK)
            {

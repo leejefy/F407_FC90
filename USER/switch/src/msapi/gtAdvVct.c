@@ -17,13 +17,12 @@
 #include <gtDrvSwRegs.h>
 #include <gtHwCntl.h>
 #include <gtSem.h>
-
 #ifdef GT_USE_MAD
 #include <gtMad.h>
 #endif
 
 #ifdef GT_USE_MAD
-//#include "gtAdvVct_mad.c"
+#include "gtAdvVct_mad.c"
 #endif
 
 #define GT_LOOKUP_TABLE_ENTRY  128  /* 73 */

@@ -24,7 +24,7 @@
 #endif
 
 #ifdef GT_USE_MAD
-//#include "gtPhyCtrl_mad.c"
+#include "gtPhyCtrl_mad.c"
 #endif
 /*
  * This routine set Auto-Negotiation Ad Register for Fast Ethernet Phy
@@ -2788,7 +2788,7 @@ GT_STATUS gprtGetPhyReg
 {
     GT_U16          u16Data;           /* The register's read data.    */
     GT_U8           hwPort;         /* the physical port number     */
-/*lzh0808*/
+
 /*#ifdef GT_USE_MAD */
 #if 0
     if (dev->use_mad==GT_TRUE)
@@ -2912,8 +2912,6 @@ GT_STATUS gprtGetPagedPhyReg
     GT_U16            pageReg;
     GT_U8            hwPort;
 
-/*lzh0808 debug*/
-
 /*#ifdef GT_USE_MAD */
 #if 0
     if (dev->use_mad==GT_TRUE)
@@ -2997,7 +2995,7 @@ GT_STATUS gprtSetPagedPhyReg
     GT_BOOL            autoOn;
     GT_U16            pageReg;
     GT_U8            hwPort;
-/*lzh0808 debug*/
+
 /*#ifdef GT_USE_MAD */
 #if 0
     if (dev->use_mad==GT_TRUE)

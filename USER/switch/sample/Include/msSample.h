@@ -186,6 +186,7 @@ GT_BOOL qdSimRead (GT_QD_DEV* dev,unsigned int portNumber , unsigned int miiReg,
 GT_BOOL qdSimWrite (GT_QD_DEV* dev,unsigned int portNumber , unsigned int miiReg, unsigned int value);
 void qdSimInit(GT_DEVICE devId, int baseAddr);
 
+GT_STATUS qd_madInit(GT_QD_DEV	  *dev, int phyAddr);
 
 #if 1 /* This is for testing */
 

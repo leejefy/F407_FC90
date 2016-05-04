@@ -23,7 +23,7 @@ extern "C" {
 /* Customers set self selection for DSDT  in here */
 
 /* DSDT phy API use Mad driver(DSDT/phy) */
-#if 0
+#if 1
 #undef GT_USE_MAD 
 #else
 #define GT_USE_MAD 1

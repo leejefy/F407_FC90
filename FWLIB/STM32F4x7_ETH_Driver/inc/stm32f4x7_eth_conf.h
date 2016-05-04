@@ -114,6 +114,8 @@
 #define PHY_SR                 ((uint16_t)0x10) /* PHY status register Offset */
 #define PHY_SPEED_STATUS       ((uint16_t)0x0002) /* PHY Speed mask */
 #define PHY_DUPLEX_STATUS      ((uint16_t)0x0004) /* PHY Duplex mask */
+//#define PHY_SPEED_STATUS       ((uint16_t)0x0100) /* PHY Speed mask */
+//#define PHY_DUPLEX_STATUS      ((uint16_t)0x0400) /* PHY Duplex mask */
 
 /* The MV88E6321 PHY: MII Interrupt Control Register  */
 #define PHY_MICR               ((uint16_t)0x11) /* MII Interrupt Control Register */

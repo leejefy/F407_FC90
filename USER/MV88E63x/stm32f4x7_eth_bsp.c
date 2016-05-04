@@ -8,7 +8,7 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define		PHY_ADDRESS     0x00    // MV88E6321 PHY–æ∆¨µÿ÷∑.
+#define		PHY_ADDRESS     0x0    // MV88E6321 PHY–æ∆¨µÿ÷∑.
 
 
 /****************************************************************************
@@ -63,8 +63,8 @@ static void ETH_MACDMA_Config(void)
 
   /* Fill ETH_InitStructure parametrs */
   /*------------------------   MAC   -----------------------------------*/
-  //ETH_InitStructure.ETH_AutoNegotiation = ETH_AutoNegotiation_Enable;
-  ETH_InitStructure.ETH_AutoNegotiation = ETH_AutoNegotiation_Disable; 
+  ETH_InitStructure.ETH_AutoNegotiation = ETH_AutoNegotiation_Enable;
+  //ETH_InitStructure.ETH_AutoNegotiation = ETH_AutoNegotiation_Disable; 
   ETH_InitStructure.ETH_Speed = ETH_Speed_100M;
   ETH_InitStructure.ETH_Mode = ETH_Mode_FullDuplex;   
 

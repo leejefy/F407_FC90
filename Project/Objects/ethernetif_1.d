@@ -1,9 +1,0 @@
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\src\netif\ethernetif.c
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\src\include\lwip/opt.h
-.\objects\ethernetif_1.o: ..\FWLIB\STM32F4x7_ETH_Driver\inc\lwipopts.h
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\src\include\lwip/debug.h
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\src\include\lwip/arch.h
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cc.h
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\port\STM32F4x7\arch/cpu.h
-.\objects\ethernetif_1.o: ..\lwip-1.4.1\src\include\lwip/opt.h
-.\objects\ethernetif_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

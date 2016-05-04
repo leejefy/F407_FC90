@@ -43,7 +43,7 @@
 */
 //#define MANUAL_MODE
 
-//#define MULTI_ADDR_MODE
+#define MULTI_ADDR_MODE
 #define N_OF_QD_DEVICES        3    /* number of 88E6183 devices connected */
 
 #define DEVICE0_ID        10

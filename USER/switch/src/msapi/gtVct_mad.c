@@ -18,7 +18,7 @@
 #include <gtHwCntl.h>
 #include <gtSem.h>
 
-#include <madApi.h>
+//#include <madApi.h>
 
 
 /*******************************************************************************

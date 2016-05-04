@@ -37,8 +37,7 @@ extern "C" {
 #ifdef DEBUG_QD
 #define DBG_INFO(x) gtDbgPrint x
 #else
-#include <string.h>
-#define DBG_INFO(x); printf x
+#define DBG_INFO(x);
 #endif /* DEBUG_QD */
 
 typedef GT_U32 GT_SEM;

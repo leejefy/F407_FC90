@@ -6197,3 +6197,202 @@ gtHwCntl.c (user\switch\src\driver):            if(phyReadGlobal2Reg(dev,QD_REG_
 gtHwCntl.c (user\switch\src\driver):    if(phyReadGlobal2Reg(dev,QD_REG_SMI_PHY_DATA, &smiReg) != GT_OK)
 gtHwCntl.c (user\switch\src\driver):    if(phyReadGlobal2Reg(dev,QD_REG_SMI_PHY_CMD, &smiReg) != GT_OK)
 gtHwCntl.c (user\switch\src\driver):            if(phyReadGlobal2Reg(dev,QD_REG_SMI_PHY_CMD, &smiReg) != GT_OK)
+---- ETH_ReadPHYRegister Matches (15 in 3 files) ----
+Main.c (user):  PHYRegData = ETH_ReadPHYRegister(0x11,0x02);
+Main.c (user):   PHYRegData = ETH_ReadPHYRegister(0x11,0x03);
+Main.c (user):	PHYRegData = ETH_ReadPHYRegister(PHYAddress,PHYRegAddr);
+Main.c (user):  PHYRegData = ETH_ReadPHYRegister(SmiAddr,RegAddr);
+Main.c (user):	data = ETH_ReadPHYRegister(SmiAddr,QD_REG_SMI_PHY_DATA);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):	 printf("\n\rETH_ReadPHYRegister %d:0x%X", 0, ETH_ReadPHYRegister(PHYAddress, 0));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):     printf("\n\rETH_ReadPHYRegister %d:0x%X", 16, ETH_ReadPHYRegister(PHYAddress, 16));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_Linked_Status) && (timeout < PHY_READ_TO));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):     printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_AutoNego_Complete) && (timeout < (uint32_t)PHY_READ_TO));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):	printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    RegValue = ETH_ReadPHYRegister(PHYAddress, PHY_SR);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  tmpreg = ETH_ReadPHYRegister(PHYAddress, PHY_BCR); 
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg);
+---- ETH_WritePHYRegister Matches (9 in 3 files) ----
+Main.c (user):	ret = ETH_WritePHYRegister(PHYAddress,PHYRegAddr,PHYRegData);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_Reset)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_AutoNegotiation)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!ETH_WritePHYRegister(PHYAddress, PHY_BCR, ((uint16_t)(ETH_InitStruct->ETH_Mode >> 3) |
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHYValue)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  	printf("\r\n===== ETH_WritePHYRegister ETH_ERROR===\r\n");
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  printf("\r\n===== ETH_WritePHYRegister ETH_SUCCESS===\r\n");
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(ETH_WritePHYRegister(PHYAddress, PHY_BCR, tmpreg) != (uint32_t)RESET)
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHYValue);
+---- QD_SMI_BUSY Matches (63 in 4 files) ----
+gtDrvSwRegs.h (user\switch\include\h\driver):#define QD_SMI_BUSY                0x8000
+gtHwCntl.c (user\switch\src\driver):  smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) | (regAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):  smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | (regAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+gtHwCntl.c (user\switch\src\driver):	DBG_INFO(("phyRegWritePPUEn QD_REG_SMI_PHY_CMD is busy or not smiReg = %x,%x\r\n",smiReg,smiReg & QD_SMI_BUSY));
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):			DBG_INFO(("==phyRegWritePPUEn==while (%d) >> smiReg & QD_SMI_BUSY\r\n",smiReg & QD_SMI_BUSY));
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg =  (GT_U16)(QD_SMI_BUSY | (port << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE_ADDR << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):	smiReg =  (GT_U16)(QD_SMI_BUSY | (port << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_45 << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg = (GT_U16)(QD_SMI_BUSY | (port << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE_ADDR << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg = (GT_U16)( QD_SMI_BUSY | (port << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):  smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT)
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):  smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT)
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT)
+gtHwCntl.c (user\switch\src\driver):  smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT)
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) 
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):  smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT)
+gtHwCntl.c (user\switch\src\driver):    if(smiReg & QD_SMI_BUSY) 
+gtHwCntl.c (user\switch\src\driver):        } while (smiReg & QD_SMI_BUSY);
+gtHwCntl.c (user\switch\src\driver):    smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT)
+gtMiiSmiIf.c (user\switch\src\platform):    if(smiReg & QD_SMI_BUSY) 
+gtMiiSmiIf.c (user\switch\src\platform):        } while (smiReg & QD_SMI_BUSY);
+gtMiiSmiIf.c (user\switch\src\platform):    smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) | 
+gtMiiSmiIf.c (user\switch\src\platform):    if(smiReg & QD_SMI_BUSY) 
+gtMiiSmiIf.c (user\switch\src\platform):        } while (smiReg & QD_SMI_BUSY);
+gtMiiSmiIf.c (user\switch\src\platform):    if(smiReg & QD_SMI_BUSY) 
+gtMiiSmiIf.c (user\switch\src\platform):        } while (smiReg & QD_SMI_BUSY);
+gtMiiSmiIf.c (user\switch\src\platform):    smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | 
+gtMiiSmiIf.c (user\switch\src\platform):  smiReg =  QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) | (regAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+gtMiiSmiIf.c (user\switch\src\platform):  smiReg = QD_SMI_BUSY | (phyAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | (regAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+Main.c (user):	smiReg =  QD_SMI_BUSY | (SmiAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_READ_22 << QD_SMI_OP_BIT) | (PHYRegAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+Main.c (user):		if( (ETH_ReadPHYRegister(SmiAddr,QD_REG_SMI_PHY_CMD) & QD_SMI_BUSY)== 0 )
+Main.c (user):	smiReg =  QD_SMI_BUSY | (SmiAddr << QD_SMI_DEV_ADDR_BIT) | (QD_SMI_WRITE << QD_SMI_OP_BIT) | (PHYRegAddr << QD_SMI_REG_ADDR_BIT) | (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT);
+---- hwSetPhyRegField Matches (15 in 4 files) ----
+gtDrvConfig.c (user\switch\src\driver):                if((status= hwSetPhyRegField(dev,hwPort,27,9,1,data)) != GT_OK)
+gtDrvConfig.c (user\switch\src\driver):                if((status= hwSetPhyRegField(dev,hwPort,22,15,1,data)) != GT_OK)
+gtDrvConfig.c (user\switch\src\driver):                if((status= hwSetPhyRegField(dev,hwPort,27,9,1,data)) != GT_OK)
+gtDrvConfig.c (user\switch\src\driver):                if((status= hwSetPhyRegField(dev,hwPort,22,15,1,data)) != GT_OK)
+gtDrvConfig.c (user\switch\src\driver):    if((status= hwSetPhyRegField(dev,hwPort,22,0,8,pageReg)) != GT_OK)
+gtHwCntl.c (user\switch\src\driver):* hwSetPhyRegField
+gtHwCntl.c (user\switch\src\driver):GT_STATUS hwSetPhyRegField
+gtHwCntl.h (user\switch\include\h\driver):* hwSetPhyRegField
+gtHwCntl.h (user\switch\include\h\driver):GT_STATUS hwSetPhyRegField
+gtPhyCtrl.c (user\switch\src\msapi):    retVal = hwSetPhyRegField(dev,hwPort,QD_PHY_CONTROL_REG,14,1,u16Data);
+gtPhyCtrl.c (user\switch\src\msapi):    if((retVal=hwSetPhyRegField(dev,hwPort,QD_PHY_CONTROL_REG,11,1,u16Data)) != GT_OK)
+gtPhyCtrl.c (user\switch\src\msapi):    if((retVal=hwSetPhyRegField(dev,hwPort,QD_PHY_AUTONEGO_AD_REG,(GT_U8)regStart,2,u16Data)) != GT_OK)
+gtPhyCtrl.c (user\switch\src\msapi):    if((retVal=hwSetPhyRegField(dev,hwPort,QD_PHY_CONTROL_REG,9,1,1)) != GT_OK)
+gtPhyCtrl.c (user\switch\src\msapi):        if((retVal = hwSetPhyRegField(dev,hwPort,0x10,14,1,u16Data)) != GT_OK)
+gtPhyCtrl.c (user\switch\src\msapi):    if((retVal=hwSetPhyRegField(dev,hwPort,QD_PHY_CONTROL_REG,9,1,1)) != GT_OK)
+---- MARVELL_OUI_MSb Matches (2 in 2 files) ----
+gtDrvConfig.c (user\switch\src\driver):    if(ouiMsb != MARVELL_OUI_MSb)
+gtVct.h (user\switch\include\h\msapi):#define MARVELL_OUI_MSb        0x0141
+---- driverFindPhyID Matches (4 in 1 files) ----
+gtDrvConfig.c (user\switch\src\driver):* driverFindPhyID
+gtDrvConfig.c (user\switch\src\driver):static GT_STATUS driverFindPhyID
+gtDrvConfig.c (user\switch\src\driver):    if(driverFindPhyID(dev,hwPort,&phyId) != GT_OK)
+gtDrvConfig.c (user\switch\src\driver):    if(driverFindPhyID(dev,hwPort,&phyId) != GT_OK)
+---- driverGetPhyID Matches (5 in 3 files) ----
+gtDrvConfig.c (user\switch\src\driver):* driverGetPhyID
+gtDrvConfig.c (user\switch\src\driver):GT_U32 driverGetPhyID
+gtDrvConfig.h (user\switch\include\h\driver):* driverGetPhyID
+gtDrvConfig.h (user\switch\include\h\driver):GT_U32 driverGetPhyID
+msApiInternal.h (user\switch\include\h\msapi):#define GT_GET_PHY_ID(dev,_hwPort)            driverGetPhyID(dev,_hwPort)
+---- G1_DEV_NO_RELOAD_EEPROM Matches (1 in 1 files) ----
+msApiInternal.h (user\switch\include\h\msapi):#define G1_DEV_NO_RELOAD_EEPROM	(G1_DEV_88E6321_FAMILY | G1_DEV_88E6999_FAMILY | G1_DEV_88E6390_FAMILY)
+---- MARVELL_OUI_LSb Matches (1 in 1 files) ----
+gtVct.h (user\switch\include\h\msapi):#define MARVELL_OUI_LSb        0x0C00
+---- PHY_MODEL_MASK Matches (3 in 3 files) ----
+gtAdvVct.c (user\switch\src\msapi):            if ((phyInfo->phyId & PHY_MODEL_MASK) == DEV_G65G)
+gtDrvConfig.c (user\switch\src\driver):    switch (phyId & PHY_MODEL_MASK)
+gtVct.h (user\switch\include\h\msapi):#define PHY_MODEL_MASK        0x03F0
+---- 6321 Matches (0 in 0 files) ----
+---- 88E632 Matches (0 in 0 files) ----
+---- 88E632 Matches (0 in 0 files) ----
+---- 88E632 Matches (0 in 0 files) ----
+---- HAL_ETH_ReadPHYRegister Matches (0 in 0 files) ----
+---- HAL_ETH_ReadPHYRegister Matches (0 in 0 files) ----
+---- HAL_ETH_ReadPHYRegister Matches (0 in 0 files) ----
+---- PHY_BCR Matches (9 in 2 files) ----
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_Reset)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_AutoNegotiation)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!ETH_WritePHYRegister(PHYAddress, PHY_BCR, ((uint16_t)(ETH_InitStruct->ETH_Mode >> 3) |
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  *     @arg PHY_BCR: Transceiver Basic Control Register 
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  *     @arg PHY_BCR    : Transceiver Control Register  
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  tmpreg = ETH_ReadPHYRegister(PHYAddress, PHY_BCR); 
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(ETH_WritePHYRegister(PHYAddress, PHY_BCR, tmpreg) != (uint32_t)RESET)
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_BCR                          0          /*!< Transceiver Basic Control Register */
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):#define IS_ETH_PHY_REG(REG) (((REG) == PHY_BCR) || \
+---- PHY_Isolate Matches (1 in 1 files) ----
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_Isolate                     ((uint16_t)0x0400)      /*!< Isolate PHY from MII */
+---- PHY_SR Matches (5 in 3 files) ----
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    RegValue = ETH_ReadPHYRegister(PHYAddress, PHY_SR);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  *     @arg PHY_SR : Transceiver Status Register    
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):                             ((REG) == PHY_SR))
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_SR                 ((uint16_t)0x10) /* PHY status register Offset */
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_SR                 ((uint16_t)0x01) /* PHY status register Offset */
+---- PHY_SPEED_STATUS Matches (3 in 2 files) ----
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(RegValue & PHY_SPEED_STATUS)
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_SPEED_STATUS       ((uint16_t)0x0002) /* PHY Speed mask */
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_SPEED_STATUS       ((uint16_t)0x0002) /* PHY Speed mask */
+---- PHY_Reset Matches (2 in 2 files) ----
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_Reset)))
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_Reset                       ((uint16_t)0x8000)      /*!< PHY Reset */
+---- PHYAddress Matches (34 in 3 files) ----
+Main.c (user):u16 Read_ETH_PHY(u16 PHYAddress,u16 PHYRegAddr)
+Main.c (user):	PHYRegData = ETH_ReadPHYRegister(PHYAddress,PHYRegAddr);
+Main.c (user):	printf("\n\rETH_ReadPHYRegister(%02x,%02x):0x%X\n",PHYAddress,PHYRegAddr, PHYRegData); 
+Main.c (user):u16 Write_ETH_PHY(u16 PHYAddress,u16 PHYRegAddr,u16 PHYRegData)
+Main.c (user):	ret = ETH_WritePHYRegister(PHYAddress,PHYRegAddr,PHYRegData);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  * @param PHYAddress: external PHY address
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_Reset)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):	 printf("\n\rETH_ReadPHYRegister %d:0x%X", 0, ETH_ReadPHYRegister(PHYAddress, 0));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):     printf("\n\rETH_ReadPHYRegister %d:0x%X", 16, ETH_ReadPHYRegister(PHYAddress, 16));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_Linked_Status) && (timeout < PHY_READ_TO));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):     printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_AutoNegotiation)))
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_AutoNego_Complete) && (timeout < (uint32_t)PHY_READ_TO));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):	printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    RegValue = ETH_ReadPHYRegister(PHYAddress, PHY_SR);
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):    if(!ETH_WritePHYRegister(PHYAddress, PHY_BCR, ((uint16_t)(ETH_InitStruct->ETH_Mode >> 3) |
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  * @param PHYAddress: PHY device address, is the index of one of supported 32 PHY devices. 
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  assert_param(IS_ETH_PHY_ADDRESS(PHYAddress));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  tmpreg |=(((uint32_t)PHYAddress<<11) & ETH_MACMIIAR_PA);/* Set the PHY device address */
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  * @param PHYAddress: PHY device address, is the index of one of supported 32 PHY devices. 
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHYValue)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  assert_param(IS_ETH_PHY_ADDRESS(PHYAddress));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  tmpreg |=(((uint32_t)PHYAddress<<11) & ETH_MACMIIAR_PA); /* Set the PHY device address */
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  * @param  PHYAddress: PHY device address, is the index of one of supported 32 PHY devices.
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):uint32_t ETH_PHYLoopBackCmd(uint16_t PHYAddress, FunctionalState NewState)
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  assert_param(IS_ETH_PHY_ADDRESS(PHYAddress));
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  tmpreg = ETH_ReadPHYRegister(PHYAddress, PHY_BCR); 
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  if(ETH_WritePHYRegister(PHYAddress, PHY_BCR, tmpreg) != (uint32_t)RESET)
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress);
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg);
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHYValue);
+Stm32f4x7_eth.h (fwlib\stm32f4x7_eth_driver\inc):uint32_t ETH_PHYLoopBackCmd(uint16_t PHYAddress, FunctionalState NewState);
+---- PHY_MICR_INT_EN Matches (2 in 1 files) ----
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_MICR_INT_EN        ((uint16_t)0x0002) /* PHY Enable interrupts */
+Stm32f4x7_eth_conf.h (fwlib\stm32f4x7_eth_driver\inc):#define PHY_MICR_INT_EN        ((uint16_t)0x0002) /* PHY Enable interrupts */
+---- OK ETH_ReadPHYRegister ETH->MACMIIDR Matches (1 in 1 files) ----
+Stm32f4x7_eth.c (fwlib\stm32f4x7_eth_driver\src):  printf("\r\n OK ETH_ReadPHYRegister ETH->MACMIIDR= %x\r\n",ETH->MACMIIDR);
