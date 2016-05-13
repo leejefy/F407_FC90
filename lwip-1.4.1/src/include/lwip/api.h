@@ -39,7 +39,7 @@
 #include <stddef.h> /* for size_t */
 
 #include "lwip/netbuf.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/ip_addr.h"
 #include "lwip/err.h"
 

@@ -1083,7 +1083,6 @@ GT_STATUS qdLoadDriver
 
     if(IS_IN_DEV_GROUP(dev,DEV_CPU_DEST))
     {
-    DBG_INFO(("=========gsysSetCPUDest.=======\n"));
         retVal = gsysSetCPUDest(dev,dev->cpuPortNum);
         if(retVal != GT_OK)
            {

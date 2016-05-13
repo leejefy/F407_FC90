@@ -362,7 +362,7 @@ GT_STATUS miiSmiIfReadRegister
         }
     }
     else
-    {
+    {	
          if(fgtReadMii(dev,(GT_U32)phyAddr,(GT_U32)regAddr,&tmpData) != GT_TRUE)
         {
             return GT_FAIL;

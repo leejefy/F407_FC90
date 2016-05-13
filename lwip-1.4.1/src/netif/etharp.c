@@ -206,7 +206,6 @@ void
 etharp_tmr(void)
 {
   u8_t i;
-
   LWIP_DEBUGF(ETHARP_DEBUG, ("etharp_timer\n"));
   /* remove expired entries from the ARP table */
   for (i = 0; i < ARP_TABLE_SIZE; ++i) {
@@ -1194,6 +1193,7 @@ etharp_raw(struct netif *netif, const struct eth_addr *ethsrc_addr,
   if (p == NULL) {
     LWIP_DEBUGF(ETHARP_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_LEVEL_SERIOUS,
       ("etharp_raw: could not allocate pbuf for ARP request.\n"));
+	printf("etharp_raw: could not allocate pbuf for ARP request.\n");
     ETHARP_STATS_INC(etharp.memerr);
     return ERR_MEM;
   }
@@ -1204,6 +1204,7 @@ etharp_raw(struct netif *netif, const struct eth_addr *ethsrc_addr,
   hdr = (struct etharp_hdr *)((u8_t*)ethhdr + SIZEOF_ETH_HDR);
   LWIP_DEBUGF(ETHARP_DEBUG | LWIP_DBG_TRACE, ("etharp_raw: sending raw ARP packet.\n"));
   hdr->opcode = htons(opcode);
+  printf("etharp_raw: sending raw ARP packet.\n");
 
   LWIP_ASSERT("netif->hwaddr_len must be the same as ETHARP_HWADDR_LEN for etharp!",
               (netif->hwaddr_len == ETHARP_HWADDR_LEN));

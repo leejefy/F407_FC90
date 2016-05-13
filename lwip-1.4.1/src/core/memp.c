@@ -49,7 +49,7 @@
 #include "lwip/api.h"
 #include "lwip/api_msg.h"
 #include "lwip/tcpip.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/timers.h"
 #include "lwip/stats.h"
 #include "netif/etharp.h"
@@ -167,12 +167,12 @@ static u8_t *const memp_bases[] = {
 #else /* MEMP_SEPARATE_POOLS */
 
 /** This is the actual memory used by the pools (all pools in one big block). */
-static u8_t memp_memory[MEM_ALIGNMENT - 1 
-#define LWIP_MEMPOOL(name,num,size,desc) + ( (num) * (MEMP_SIZE + MEMP_ALIGN_SIZE(size) ) )
-#include "lwip/memp_std.h"
-];
+//static u8_t memp_memory[MEM_ALIGNMENT - 1 
+//#define LWIP_MEMPOOL(name,num,size,desc) + ( (num) * (MEMP_SIZE + MEMP_ALIGN_SIZE(size) ) )
+//#include "lwip/memp_std.h"
+//];
 //memp_memory在lwip_comm.c文件中的lwip_comm_mem_malloc()函数采用ALIENTEK动态内存管理函数分配内存
-//u8_t *memp_memory; 
+u8_t *memp_memory; 
 #endif /* MEMP_SEPARATE_POOLS */
 
 #if MEMP_SANITY_CHECK
@@ -330,7 +330,7 @@ memp_overflow_init(void)
 }
 #endif /* MEMP_OVERFLOW_CHECK */
 
-#if 0
+
 //得到memp_memory数组大小
 u32_t memp_get_memorysize(void)
 {
@@ -343,7 +343,7 @@ u32_t memp_get_memorysize(void)
 			);
 	return length;
 }
-#endif
+
 /**
  * Initialize this module.
  * 

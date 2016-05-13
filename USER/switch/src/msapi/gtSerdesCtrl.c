@@ -454,7 +454,7 @@ GT_STATUS gprtGetSerdesReg
     hwPort = qdLong2Char(port);
 	serdesPort = hwPort;
     GT_GET_SERDES_PORT(dev,&serdesPort);
-
+	
     if(hwPort > dev->maxPhyNum)
     {
         /* check if input is physical serdes address */    
@@ -465,6 +465,7 @@ GT_STATUS gprtGetSerdesReg
         else
             return GT_NOT_SUPPORTED;
     }
+	//printf("===GT_GET_SERDES_PORT serdesPort = %d ,hwPort = %d\r\n",serdesPort,hwPort);
 
     gtSemTake(dev,dev->phyRegsSem,OS_WAIT_FOREVER);
     /* check if the port is configurable */
@@ -484,6 +485,7 @@ GT_STATUS gprtGetSerdesReg
 
     /* Get Serdes Register. */
     /* Write to Serdes Register */
+	//printf("===hwReadPagedPhyReg serdesPort= %d, pageNum = %d,regAddr = %x,serdesInfo.anyPage = %d \r\n",serdesPort,pageNum,(GT_U8)regAddr,serdesInfo.anyPage);
     if(hwReadPagedPhyReg(dev,serdesPort,pageNum,(GT_U8)regAddr,serdesInfo.anyPage,data) != GT_OK)
     {
         DBG_INFO(("Failed.\n"));

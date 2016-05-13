@@ -40,7 +40,7 @@
 
 #include "lwip/init.h"
 #include "lwip/stats.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/mem.h"
 #include "lwip/memp.h"
 #include "lwip/pbuf.h"

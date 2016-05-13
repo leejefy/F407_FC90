@@ -40,6 +40,10 @@ extern "C" {
 #define DBG_INFO(x);
 #endif /* DEBUG_QD */
 
+//Add by Alan Lee,at 2016-5-12,enable debug printf more read/write register process. lzh0808
+//#define DBG_INFO(x) printf x
+
+
 typedef GT_U32 GT_SEM;
 
 #define ETHERNET_HEADER_SIZE    GT_ETHERNET_HEADER_SIZE
@@ -3849,13 +3853,13 @@ typedef GT_BOOL (*FGT_HW_ACCESS)(GT_QD_DEV* dev, HW_DEV_REG_ACCESS *regList);
 */
 typedef GT_BOOL (*FGT_READ_MII)(
                         GT_QD_DEV*   dev,
-                        unsigned int phyAddr, 
-                        unsigned int miiReg, 
+                        unsigned int DevAddr, 
+                        unsigned int RegAddr, 
                         unsigned int* value);
 typedef GT_BOOL (*FGT_WRITE_MII)(
                         GT_QD_DEV*   dev,
-                        unsigned int phyAddr, 
-                        unsigned int miiReg, 
+                        unsigned int DevAddr, 
+                        unsigned int RegAddr, 
                         unsigned int value);
 typedef GT_BOOL (*FGT_INT_HANDLER)(
                         GT_QD_DEV*   dev,

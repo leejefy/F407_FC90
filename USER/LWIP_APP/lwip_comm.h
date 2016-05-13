@@ -1,9 +1,17 @@
 #ifndef _LWIP_COMM_H
 #define _LWIP_COMM_H 
-#include "enc28j60.h" 
+//#include "enc28j60.h" 
+#include "stm32f4xx.h"
 
 #define LWIP_MAX_DHCP_TRIES		4   //DHCP服务器最大重试次数
-   
+
+#define IMT407G_IP  		192,168,1,6   		     //开发板ip 
+#define IMT407G_NETMASK   	255,255,255,0   		//开发板子网掩码
+#define IMT407G_WG		   	192,168,1,1   			//开发板子网关
+#define IMT407G_MAC_ADDR   40,20,45,00,11,02		//开发板MAC地址
+#define REMOTE_IP     		192,168,1,100
+
+
 //lwip控制结构体
 typedef struct  
 {
@@ -28,6 +36,8 @@ u8 lwip_comm_init(void);
 void lwip_pkt_handle(void);
 void lwip_periodic_handle(void);
 void lwip_dhcp_process_handle(void);
+
+
 
 #endif
 

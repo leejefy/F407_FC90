@@ -4,31 +4,18 @@
 #include "lwip/mem.h"
 #include "lwip/memp.h"
 #include "lwip/init.h"
-#include "ethernetif.h" 
+#include "netif/ethernetif.h" 
 #include "lwip/timers.h"
 #include "lwip/tcp_impl.h"
 #include "lwip/ip_frag.h"
 #include "lwip/tcpip.h" 
 #include "malloc.h"
-#include "delay.h"
+#include "common.h"
 #include "usart.h"  
 #include <stdio.h>
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK 精英开发板
-//lwip通用驱动 代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2015/3/15
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2009-2019
-//All rights reserved									  
-//*******************************************************************************
-//修改信息
-//无
-////////////////////////////////////////////////////////////////////////////////// 	   
-   
+#include "stm32f4x7_eth.h"
+#include "mv88e6xx.h"
+
 __lwip_dev lwipdev;						//lwip控制结构体 
 struct netif lwip_netif;				//定义一个全局的网络接口
 
@@ -70,24 +57,22 @@ void lwip_comm_mem_free(void)
 	myfree(SRAMIN,ram_heap);
 }
 
-#define REMOTE_IP     192.168.1.100
-
 //lwip 默认IP设置
 //lwipx:lwip控制结构体指针
 void lwip_comm_default_ip_set(__lwip_dev *lwipx)
 {
-	u8_t remote_ip[4] = {REMOTE_IP};
-	u8_t macaddress[6]={IMT407G_MAC_ADDR}; 
-	u8_t ip_addr[4] = {IMT407G_IP};
-	u8_t netmask_addr[4] = {IMT407G_NETMASK};
-	u8_t gw_addr[4] = {IMT407G_WG};
+	u8 remote_ip[4] = {REMOTE_IP};
+	u8 macaddress[6]={IMT407G_MAC_ADDR}; 
+	u8 ip_addr[4] = {IMT407G_IP};
+	u8 netmask_addr[4] = {IMT407G_NETMASK};
+	u8 gw_addr[4] = {IMT407G_WG};
 
 	//默认远端IP为:192.168.1.100
 	lwipx->remoteip[0]=remote_ip[0];	
 	lwipx->remoteip[1]=remote_ip[1];
 	lwipx->remoteip[2]=remote_ip[2];
 	lwipx->remoteip[3]=remote_ip[3];
-	//MAC地址设置(高三字节固定为:2.0.0,低三字节用STM32唯一ID)
+	//MAC地址设置
 	lwipx->mac[0]=macaddress[0];
 	lwipx->mac[1]=macaddress[1];
 	lwipx->mac[2]=macaddress[2];
@@ -95,10 +80,10 @@ void lwip_comm_default_ip_set(__lwip_dev *lwipx)
 	lwipx->mac[4]=macaddress[4];
 	lwipx->mac[5]=macaddress[5]; 
 	//默认本地IP为:192.168.1.6
-	lwipx->ip[0]=IMT407G_IP[0];	
-	lwipx->ip[1]=IMT407G_IP[1];
-	lwipx->ip[2]=IMT407G_IP[2];
-	lwipx->ip[3]=IMT407G_IP[3];
+	lwipx->ip[0]=ip_addr[0];	
+	lwipx->ip[1]=ip_addr[1];
+	lwipx->ip[2]=ip_addr[2];
+	lwipx->ip[3]=ip_addr[3];
 	//默认子网掩码:255.255.255.0
 	lwipx->netmask[0]=netmask_addr[0];	
 	lwipx->netmask[1]=netmask_addr[1];
@@ -110,12 +95,13 @@ void lwip_comm_default_ip_set(__lwip_dev *lwipx)
 	lwipx->gateway[2]=gw_addr[2];
 	lwipx->gateway[3]=gw_addr[3];	
 	lwipx->dhcpstatus=0;//没有DHCP	
+	
 } 
 
 //LWIP初始化(LWIP启动的时候使用)
 //返回值:0,成功
 //      1,内存错误
-//      2,DM9000初始化失败
+//      2,MV88E6321初始化失败
 //      3,网卡添加失败.
 u8 lwip_comm_init(void)
 {
@@ -123,10 +109,12 @@ u8 lwip_comm_init(void)
 	struct ip_addr ipaddr;  			//ip地址
 	struct ip_addr netmask; 			//子网掩码
 	struct ip_addr gw;      			//默认网关 
+	if(ETH_Mem_Malloc())return 1;		//内存申请失败
 	if(lwip_comm_mem_malloc())return 1;	//内存申请失败
-	//if(ENC28J60_Init())return 2;		//初始化ENC28J60
+	if(mv88e6xx_init())return 2;		//初始化网络芯片	
 	lwip_init();						//初始化LWIP内核
 	lwip_comm_default_ip_set(&lwipdev);	//设置默认IP等信息
+
 
 #if LWIP_DHCP		//使用动态IP
 	ipaddr.addr = 0;
@@ -195,12 +183,12 @@ void lwip_periodic_handle()
 		}
 	}
 
-	//每60s执行一次DHCP粗糙处理
-	if (lwip_localtime - DHCPcoarseTimer >= DHCP_COARSE_TIMER_MSECS)
-	{
-		DHCPcoarseTimer =  lwip_localtime;
-		dhcp_coarse_tmr();
-	}  
+  //每60s执行一次DHCP粗糙处理
+  if (lwip_localtime - DHCPcoarseTimer >= DHCP_COARSE_TIMER_MSECS)
+  {
+    DHCPcoarseTimer =  lwip_localtime;
+    dhcp_coarse_tmr();
+  }  
 #endif
 }
 
@@ -266,8 +254,6 @@ void lwip_dhcp_process_handle(void)
 	}
 }
 #endif 
-
-
 
 
 

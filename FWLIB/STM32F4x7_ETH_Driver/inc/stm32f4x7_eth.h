@@ -1873,6 +1873,13 @@ void ETH_MMCITConfig(uint32_t ETH_MMC_IT, FunctionalState NewState);
 ITStatus ETH_GetMMCITStatus(uint32_t ETH_MMC_IT);
 uint32_t ETH_GetMMCRegister(uint32_t ETH_MMCReg);
 
+/** 
+  * @brief  PHY, for Marvel 88E6321 
+  */ 
+uint16_t Read_PHY_SMI( uint16_t devAddr , uint16_t regAddr );
+uint16_t Write_PHY_SMI( uint16_t devAddr , uint16_t regAddr,  uint16_t data );
+uint32_t ETH_PHYPowerDownCmd(uint16_t PHYAddress, FunctionalState NewState);
+
 #ifdef __cplusplus
 }
 #endif
@@ -1888,3 +1895,4 @@ uint32_t ETH_GetMMCRegister(uint32_t ETH_MMCReg);
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+

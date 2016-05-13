@@ -52,7 +52,7 @@
 #include "lwip/stats.h"
 #include "lwip/snmp.h"
 #if LWIP_TCP_TIMESTAMPS
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #endif
 
 #include <string.h>

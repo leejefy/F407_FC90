@@ -48,7 +48,7 @@
 #include "lwip/udp.h"
 #include "lwip/snmp_asn1.h"
 #include "lwip/snmp_structs.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "netif/etharp.h"
 
 /**

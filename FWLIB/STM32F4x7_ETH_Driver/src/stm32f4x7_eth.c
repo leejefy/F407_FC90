@@ -30,6 +30,7 @@
 #include "stm32f4x7_eth.h"
 #include "stm32f4xx_rcc.h"
 #include <string.h>
+#include "gtDrvSwRegs.h"
 
 /** @addtogroup STM32F4x7_ETH_Driver
   * @brief ETH driver modules
@@ -63,43 +64,43 @@
 * @{
 */ 
 
-#if defined   (__CC_ARM) /*!< ARM Compiler */
-__align(4) 
-ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
-__align(4) 
-ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
-__align(4) 
-uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
-__align(4) 
-uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
+//#if defined   (__CC_ARM) /*!< ARM Compiler */
+//__align(4) 
+//ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
+//__align(4) 
+//ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
+//__align(4) 
+//uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
+//__align(4) 
+//uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
 
-#elif defined ( __ICCARM__ ) /*!< IAR Compiler */
-#pragma data_alignment=4
-ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
-#pragma data_alignment=4
-ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
-#pragma data_alignment=4
-uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
-#pragma data_alignment=4
-uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
+//#elif defined ( __ICCARM__ ) /*!< IAR Compiler */
+//#pragma data_alignment=4
+//ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
+//#pragma data_alignment=4
+//ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
+//#pragma data_alignment=4
+//uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
+//#pragma data_alignment=4
+//uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
 
-#elif defined (__GNUC__) /*!< GNU Compiler */
-ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB] __attribute__ ((aligned (4))); /* Ethernet Rx DMA Descriptor */
-ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB] __attribute__ ((aligned (4))); /* Ethernet Tx DMA Descriptor */
-uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE] __attribute__ ((aligned (4))); /* Ethernet Receive Buffer */
-uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __attribute__ ((aligned (4))); /* Ethernet Transmit Buffer */
+//#elif defined (__GNUC__) /*!< GNU Compiler */
+//ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB] __attribute__ ((aligned (4))); /* Ethernet Rx DMA Descriptor */
+//ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB] __attribute__ ((aligned (4))); /* Ethernet Tx DMA Descriptor */
+//uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE] __attribute__ ((aligned (4))); /* Ethernet Receive Buffer */
+//uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __attribute__ ((aligned (4))); /* Ethernet Transmit Buffer */
 
-#elif defined  (__TASKING__) /*!< TASKING Compiler */
-__align(4) 
-ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
-__align(4) 
-ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
-__align(4) 
-uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
-__align(4) 
-uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
+//#elif defined  (__TASKING__) /*!< TASKING Compiler */
+//__align(4) 
+//ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB];/* Ethernet Rx MA Descriptor */
+//__align(4) 
+//ETH_DMADESCTypeDef  DMATxDscrTab[ETH_TXBUFNB];/* Ethernet Tx DMA Descriptor */
+//__align(4) 
+//uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; /* Ethernet Receive Buffer */
+//__align(4) 
+//uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; /* Ethernet Transmit Buffer */
 
-#endif /* __CC_ARM */
+//#endif /* __CC_ARM */
 
 
 /* Global pointers on Tx and Rx descriptor used to track transmit and receive descriptors */
@@ -158,6 +159,53 @@ void ETH_DeInit(void)
   RCC_AHB1PeriphResetCmd(RCC_AHB1Periph_ETH_MAC, ENABLE);
   RCC_AHB1PeriphResetCmd(RCC_AHB1Periph_ETH_MAC, DISABLE);
 }
+
+void Ethernet_MDIO_Config(void)
+{
+	uint32_t tmpreg = 0;
+	RCC_ClocksTypeDef  rcc_clocks;
+	uint32_t hclk = 60000000;
+	/* Get the ETHERNET MACMIIAR value */
+	tmpreg = ETH->MACMIIAR;
+	/* Clear CSR Clock Range CR[2:0] bits */
+	tmpreg &= MACMIIAR_CR_MASK;
+	/* Get hclk frequency value */
+	RCC_GetClocksFreq(&rcc_clocks);
+	hclk = rcc_clocks.HCLK_Frequency;
+
+	/* Set CR bits depending on hclk value */
+	if((hclk >= 20000000)&&(hclk < 35000000))
+	{
+		/* CSR Clock Range between 20-35 MHz */
+		tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div16;
+	}
+	else if((hclk >= 35000000)&&(hclk < 60000000))
+	{
+		/* CSR Clock Range between 35-60 MHz */ 
+		tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div26;
+	}  
+	else if((hclk >= 60000000)&&(hclk < 100000000))
+	{
+		/* CSR Clock Range between 60-100 MHz */ 
+		tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div42;
+	}  
+	else if((hclk >= 100000000)&&(hclk < 150000000))
+	{
+		/* CSR Clock Range between 100-150 MHz */ 
+		tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div62;
+	}
+	else /* ((hclk >= 150000000)&&(hclk <= 168000000)) */
+	{
+		/* CSR Clock Range between 150-168 MHz */ 
+		tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div102;    
+	}
+
+	/* Write to ETHERNET MAC MIIAR: Configure the ETHERNET CSR Clock Range */
+	ETH->MACMIIAR = (uint32_t)tmpreg;  
+
+}
+
+
 
 /**
   * @brief  Fills each ETH_InitStruct member with its default value.
@@ -272,10 +320,10 @@ void ETH_StructInit(ETH_InitTypeDef* ETH_InitStruct)
   */
 uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
 {
-  uint32_t RegValue = 0, tmpreg = 0;
+  uint32_t RegValue = 0,tmpreg = 0;
   __IO uint32_t i = 0;
-  RCC_ClocksTypeDef  rcc_clocks;
-  uint32_t hclk = 60000000;
+  //RCC_ClocksTypeDef  rcc_clocks;
+  //uint32_t hclk = 60000000;
   __IO uint32_t timeout = 0, err = ETH_SUCCESS;
   /* Check the parameters */
   /* MAC --------------------------*/ 
@@ -327,66 +375,27 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
   assert_param(IS_ETH_DMA_ARBITRATION_ROUNDROBIN_RXTX(ETH_InitStruct->ETH_DMAArbitration));
   /*-------------------------------- MAC Config ------------------------------*/
   /*---------------------- ETHERNET MACMIIAR Configuration -------------------*/
-  /* Get the ETHERNET MACMIIAR value */
-  tmpreg = ETH->MACMIIAR;
-  /* Clear CSR Clock Range CR[2:0] bits */
-  tmpreg &= MACMIIAR_CR_MASK;
-  /* Get hclk frequency value */
-  RCC_GetClocksFreq(&rcc_clocks);
-  hclk = rcc_clocks.HCLK_Frequency;
+  Ethernet_MDIO_Config();
   
-  /* Set CR bits depending on hclk value */
-  if((hclk >= 20000000)&&(hclk < 35000000))
-  {
-    /* CSR Clock Range between 20-35 MHz */
-    tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div16;
-  }
-  else if((hclk >= 35000000)&&(hclk < 60000000))
-  {
-    /* CSR Clock Range between 35-60 MHz */ 
-    tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div26;
-  }  
-  else if((hclk >= 60000000)&&(hclk < 100000000))
-  {
-    /* CSR Clock Range between 60-100 MHz */ 
-    tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div42;
-  }  
-  else if((hclk >= 100000000)&&(hclk < 150000000))
-  {
-    /* CSR Clock Range between 100-150 MHz */ 
-    tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div62;
-  }
-  else /* ((hclk >= 150000000)&&(hclk <= 168000000)) */
-  {
-    /* CSR Clock Range between 150-168 MHz */ 
-    tmpreg |= (uint32_t)ETH_MACMIIAR_CR_Div102;    
-  }
-  
-  /* Write to ETHERNET MAC MIIAR: Configure the ETHERNET CSR Clock Range */
-  ETH->MACMIIAR = (uint32_t)tmpreg;  
   /*-------------------- PHY initialization and configuration ----------------*/
-  /* Put the PHY in reset mode */
-  if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_Reset)))
+  /* Put the PHY in reset mode */  
+
+  if(!(Write_PHY_SMI(PHYAddress, PHY_BCR, RegValue | PHY_Reset)))
   {
     /* Return ERROR in case of write timeout */
     err = ETH_ERROR;
-	printf("\n\r ============ Put the PHY in reset mode ERROR\r\n");
     goto error;
   }
-  
   /* Delay to assure PHY reset */
   _eth_delay_(PHY_RESET_DELAY);
-  
+
   if(ETH_InitStruct->ETH_AutoNegotiation != ETH_AutoNegotiation_Disable)
   {
-    /* We wait for linked status...*/
-	 printf("\n\rETH_ReadPHYRegister %d:0x%X", 0, ETH_ReadPHYRegister(PHYAddress, 0));
-     printf("\n\rETH_ReadPHYRegister %d:0x%X", 16, ETH_ReadPHYRegister(PHYAddress, 16));
+    /* We wait for linked status...*/	
     do
     {
       timeout++;
-    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_Linked_Status) && (timeout < PHY_READ_TO));
-     printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+    } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_Linked_Status) && (timeout < PHY_READ_TO));    
     /* Return ERROR in case of timeout */
     if(timeout == PHY_READ_TO)
     {
@@ -399,10 +408,9 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
     /* Reset Timeout counter */
     timeout = 0; 
     /* Enable Auto-Negotiation */
-    if(!(ETH_WritePHYRegister(PHYAddress, PHY_BCR, PHY_AutoNegotiation)))
+    if(!(Write_PHY_SMI(PHYAddress, PHY_BCR, PHY_AutoNegotiation)))
     {
       /* Return ERROR in case of write timeout */
-	  printf("\n\r ETH_Init  PHY_AutoNegotiation   Return ERROR in case of write timeout\n\r ");
       err = ETH_ERROR;
     }
     
@@ -411,17 +419,15 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
     {
       timeout++;
     } while (!(ETH_ReadPHYRegister(PHYAddress, PHY_BSR) & PHY_AutoNego_Complete) && (timeout < (uint32_t)PHY_READ_TO));
-
-	printf("\n\rETH_ReadPHYRegister %d:0x%X", PHY_BSR, ETH_ReadPHYRegister(PHYAddress, PHY_BSR));
+	
 
     /* Return ERROR in case of timeout */
     if(timeout == PHY_READ_TO)
     {
-    	printf("\n\r ETH_Init PHY_AutoNego_Complete    (timeout == PHY_READ_TO)\n\r ");
       err = ETH_ERROR;
       goto error;
     }
-
+	
     /* Reset Timeout counter */
     timeout = 0;
     /* Read the result of the auto-negotiation */
@@ -431,27 +437,23 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
     {
       /* Set Ethernet duplex mode to Full-duplex following the auto-negotiation */
       ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;  
-	  printf("\n\r ETH_Mode     ETH_Mode_FullDuplex \n\r ");
     }
     else
     {
       /* Set Ethernet duplex mode to Half-duplex following the auto-negotiation */
       ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;  
-	  printf("\n\r ETH_Mode     ETH_Mode_HalfDuplex \n\r ");
     }
     /* Configure the MAC with the speed fixed by the auto-negotiation process */
-    if(RegValue & PHY_SPEED_STATUS)
+    if(RegValue & PHY_SPEED_STATUS == 0)
     {  
-      /* Set Ethernet speed to 10M following the auto-negotiation */
-      ETH_InitStruct->ETH_Speed = ETH_Speed_10M; 
-	  printf("\n\r ETH_Speed     ETH_Speed_10M \n\r ");
-    }
-    else
+		/* Set Ethernet speed to 10M following the auto-negotiation */
+		ETH_InitStruct->ETH_Speed = ETH_Speed_10M;  
+	}else
     {   
-      /* Set Ethernet speed to 100M following the auto-negotiation */ 
-      ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
-	  printf("\n\r ETH_Speed     ETH_Speed_100M \n\r ");
+		/* Set Ethernet speed to 100M following the auto-negotiation */ 
+		ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
     }
+		
   }
   else
   {
@@ -464,6 +466,7 @@ uint32_t ETH_Init(ETH_InitTypeDef* ETH_InitStruct, uint16_t PHYAddress)
     /* Delay to assure PHY configuration */
     _eth_delay_(PHY_CONFIG_DELAY);
   }
+
 error:
   if (err == ETH_ERROR) /* Auto-negotiation failed */
   {
@@ -655,7 +658,7 @@ error:
   /* Return Ethernet configuration success */
   if(err == ETH_SUCCESS)
   {
-  printf("======ETH_Init  ETH_SUCCESS ==\r\n");
+  	printf("======ETH_Init  ETH_SUCCESS ==\r\n");
     /* Return Ethernet configuration success */
     return ETH_SUCCESS;
   }
@@ -1232,6 +1235,8 @@ uint32_t ETH_Prepare_Transmit_Descriptors(u16 FrameLength)
   }
 
   DMATxDesc = DMATxDescToSet;
+
+  printf("@@@@@ TX  packet FrameLength = %d \r\n",FrameLength);
   
   if (FrameLength > ETH_TX_BUF_SIZE)
   {
@@ -1292,7 +1297,7 @@ uint32_t ETH_Prepare_Transmit_Descriptors(u16 FrameLength)
     ETH->DMATPDR = 0;
   }
 
-  /* Return SUCCESS */
+  /* Return SUCCESS */  
   return ETH_SUCCESS;   
 }
 
@@ -2355,6 +2360,7 @@ uint16_t ETH_ReadPHYRegister(uint16_t PHYAddress, uint16_t PHYReg)
   }
   
   /* Return data register value */  
+  //printf("\r\n ETH_ReadPHYRegister ETH_SUCCESS devAddr=%x,regAddr=%x,data=%x===\r\n",PHYAddress,PHYReg,(ETH->MACMIIDR));
   return (uint16_t)(ETH->MACMIIDR);
 }
 
@@ -2400,12 +2406,11 @@ uint32_t ETH_WritePHYRegister(uint16_t PHYAddress, uint16_t PHYReg, uint16_t PHY
   /* Return ERROR in case of timeout */
   if(timeout == PHY_WRITE_TO)
   {
-  	printf("\r\n===== ETH_WritePHYRegister ETH_ERROR===\r\n");
     return ETH_ERROR;
   }
 
   /* Return SUCCESS */
-  printf("\r\n===== ETH_WritePHYRegister ETH_SUCCESS===\r\n");
+  //printf("\r\n ETH_WritePHYRegister ETH_SUCCESS devAddr=%x,regAddr=%x,data=%x===\r\n",PHYAddress,PHYReg,PHYValue);
   return ETH_SUCCESS;  
 }
 
@@ -2882,8 +2887,129 @@ uint32_t ETH_GetMMCRegister(uint32_t ETH_MMCReg)
 
 
 /**
-* @}
-*/
+  * @brief  Read a PHY register,for Marvel 88E6321
+  * @param devAddr: PHY device address, is the index of one of supported 32 PHY devices. 
+  *   This parameter can be one of the following values: 0,..,31                  
+  * @param regAddr: PHY register address, is the index of one of the 32 PHY register. 
+  *   This parameter can be one of the following values: 
+  *     @arg PHY_BCR: Transceiver Basic Control Register 
+  *     @arg PHY_BSR: Transceiver Basic Status Register 
+  *     @arg PHY_SR : Transceiver Status Register    
+  *     @arg More PHY register could be read depending on the used PHY
+  * @retval ETH_ERROR: in case of timeout
+  *         MAC MIIDR register value: Data read from the selected PHY register (correct read )
+  */
+
+uint16_t Read_PHY_SMI( uint16_t devAddr , uint16_t regAddr )
+{
+	uint16_t smiReg; 	
+	uint16_t ret;
+	__IO uint32_t timeout = 0;
+
+	smiReg =  QD_SMI_BUSY 
+		| (1 << QD_SMI_MODE_BIT) /* 0 - clause 45, 1 - clause 22 */
+		| (QD_SMI_READ_22 << QD_SMI_OP_BIT)
+		| (devAddr << QD_SMI_DEV_ADDR_BIT) 
+		| (regAddr << QD_SMI_REG_ADDR_BIT);
+	
+	ret = ETH_WritePHYRegister(0x1C, QD_REG_SMI_PHY_CMD, smiReg);
+	_eth_delay_(PHY_RESET_DELAY);
+
+	while((ETH_ReadPHYRegister(0x1C, QD_REG_SMI_PHY_CMD) & QD_SMI_BUSY) && (timeout < (uint32_t)PHY_READ_TO ) )
+	{	
+		timeout++;
+		printf("\r\n Read_PHY_SMI busy time : %d \r\n",timeout);
+	}
+	if(timeout == PHY_READ_TO)
+	{
+		printf("\r\n ETH_ERROR ETH_ReadPHYRegister timeout= %x\r\n",timeout);
+		return (uint16_t)ETH_ERROR;
+	}
+	ret = ETH_ReadPHYRegister(0x1C,QD_REG_SMI_PHY_DATA);
+
+	//printf("\n\r Read_PHY_SMI(%02x,%02x)-%02x:0x%X", 0x1C,QD_REG_SMI_PHY_DATA,regAddr,ret); 
+	return ret;	
+}
+
+
+/**
+  * @brief  Write to a PHY register, for Marvel 88E6321
+  * @param devAddr: PHY device address, is the index of one of supported 32 PHY devices. 
+  *   This parameter can be one of the following values: 0,..,31
+  * @param regAddr: PHY register address, is the index of one of the 32 PHY register. 
+  *   This parameter can be one of the following values: 
+  *     @arg PHY_BCR    : Transceiver Control Register  
+  *     @arg More PHY register could be written depending on the used PHY
+  * @param  data: the value to write
+  * @retval ETH_ERROR: in case of timeout
+  *         ETH_SUCCESS: for correct write
+  */
+uint16_t Write_PHY_SMI( uint16_t devAddr , uint16_t regAddr,  uint16_t data )
+{
+	uint16_t smiReg;
+	uint8_t ret;
+	__IO uint32_t timeout = 0;
+
+	smiReg =  QD_SMI_BUSY 
+		| (devAddr << QD_SMI_DEV_ADDR_BIT) 
+		| (QD_SMI_WRITE << QD_SMI_OP_BIT) 
+		| (regAddr << QD_SMI_REG_ADDR_BIT) 
+		| (QD_SMI_CLAUSE22 << QD_SMI_MODE_BIT); 
+
+	ret = ETH_WritePHYRegister(0x1C,QD_REG_SMI_PHY_CMD,smiReg);
+	_eth_delay_(PHY_RESET_DELAY);
+
+	while(ETH_ReadPHYRegister(0x1C, QD_REG_SMI_PHY_CMD) & QD_SMI_BUSY)
+	{	
+		timeout++;
+		printf("\r\n Write_PHY_SMI busy time : %d \r\n",timeout);
+	}
+	if(timeout == PHY_WRITE_TO)
+	{
+	   return ETH_ERROR;
+	}
+
+	ret = ETH_WritePHYRegister(0x1C,QD_REG_SMI_PHY_DATA,data);
+
+	//printf("\n\r Write_PHY_SMI(%02x,%02x)-%02x:0x%X",0x1C,QD_REG_SMI_PHY_DATA,regAddr,data); 
+	return ret;	
+}
+
+uint32_t ETH_PHYPowerDownCmd(uint16_t PHYAddress, FunctionalState NewState)
+{
+  uint16_t tmpreg = 0;
+  /* Check the parameters */
+  assert_param(IS_ETH_PHY_ADDRESS(PHYAddress));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+
+  /* Get the PHY configuration to update it */
+  tmpreg = Read_PHY_SMI(PHYAddress, PHY_BCR); 
+
+  _eth_delay_(PHY_RESET_DELAY);
+
+  if (NewState != DISABLE)
+  {
+    /* Enable the PHY PowerDown mode */
+    tmpreg |= PHY_Powerdown;
+  }
+  else
+  {
+    /* Disable the PHY PowerDown mode */
+    tmpreg &= (uint16_t)(~(uint16_t)PHY_Powerdown);
+  }
+  /* Update the PHY control register with the new configuration */
+  if(Write_PHY_SMI(PHYAddress, PHY_BCR, tmpreg) != (uint32_t)RESET)
+  {  	
+  	printf("\r\n Close PHY_Powerdown OK = %x\r\n",tmpreg);
+  	return ETH_SUCCESS;
+  }
+  else
+  {
+    /* Return SUCCESS */
+    return ETH_ERROR; 
+  }
+}
+
 
 /**
 * @}

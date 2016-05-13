@@ -190,17 +190,35 @@ icmp_input(struct pbuf *p, struct netif *inp)
     ip_addr_copy(iphdr->src, *ip_current_dest_addr());
     ip_addr_copy(iphdr->dest, *ip_current_src_addr());
     ICMPH_TYPE_SET(iecho, ICMP_ER);
-#if CHECKSUM_GEN_ICMP
-    /* adjust the checksum */
-    if (iecho->chksum >= PP_HTONS(0xffffU - (ICMP_ECHO << 8))) {
-      iecho->chksum += PP_HTONS(ICMP_ECHO << 8) + 1;
-    } else {
-      iecho->chksum += PP_HTONS(ICMP_ECHO << 8);
-    }
-#else /* CHECKSUM_GEN_ICMP */
+	
+	
+//#if CHECKSUM_GEN_ICMP
+//    /* adjust the checksum */
+//    if (iecho->chksum >= PP_HTONS(0xffffU - (ICMP_ECHO << 8))) {
+//      iecho->chksum += PP_HTONS(ICMP_ECHO << 8) + 1;
+//    } else {
+//      iecho->chksum += PP_HTONS(ICMP_ECHO << 8);
+//    }
+//#else /* CHECKSUM_GEN_ICMP */
+//    iecho->chksum = 0;
+//#endif /* CHECKSUM_GEN_ICMP */
+/* This part of code has been modified by ST's MCD Application Team */
+/* To use the Checksum Offload Engine for the putgoing ICMP packets,
+   the ICMP checksum field should be set to 0, this is required only for Tx ICMP*/
+#ifdef CHECKSUM_BY_HARDWARE
     iecho->chksum = 0;
-#endif /* CHECKSUM_GEN_ICMP */
-    
+#else
+	/* adjust the checksum */
+    if (iecho->chksum >= htons(0xffff - (ICMP_ECHO << 8))) {
+      iecho->chksum += htons(ICMP_ECHO << 8) + 1;
+    } else {
+      iecho->chksum += htons(ICMP_ECHO << 8);
+    }	
+#endif
+
+	
+	
+	
     /* Set the correct TTL and recalculate the header checksum. */
     IPH_TTL_SET(iphdr, ICMP_TTL);
     IPH_CHKSUM_SET(iphdr, 0);

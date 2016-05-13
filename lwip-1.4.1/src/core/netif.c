@@ -47,7 +47,7 @@
 #include "netif/etharp.h"
 #include "lwip/stats.h"
 #if ENABLE_LOOPBACK
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #if LWIP_NETIF_LOOPBACK_MULTITHREADING
 #include "lwip/tcpip.h"
 #endif /* LWIP_NETIF_LOOPBACK_MULTITHREADING */

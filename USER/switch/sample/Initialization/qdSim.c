@@ -1011,9 +1011,7 @@ void qdSimRegsInit_6083()
 void qdSimRegsInit()
 {
     int i;
-	//lzh0808
-    qdMemSet(qdSimRegs, 0xff, sizeof(qdSimRegs));
-    //qdMemSet(qdSimRegs, 0x0, sizeof(qdSimRegs));
+    qdMemSet(qdSimRegs, 0xff, sizeof(qdSimRegs));   
     /* 
         PHY Registers Setup
     */
@@ -1090,7 +1088,7 @@ void qdSimRegsInit()
         case GT_FF_EG:
         case GT_FH_VPN:
 		/*lzh0808 add*/	
-		case GT_88E6321:	
+		//case GT_88E6321:	
             qdSimRegsInit_6063();
             break;
         case GT_88E6083:
@@ -1437,7 +1435,7 @@ GT_BOOL qdSimRead (GT_QD_DEV *dev,unsigned int portNumber , unsigned int miiReg,
         case GT_FF_EG:
         case GT_FH_VPN:
 		/*lzh0808*/	
-		case GT_88E6321:
+		//case GT_88E6321:
             return qdSimRead_6063(portNumber, miiReg, value);
         case GT_88E6083:
             return qdSimRead_6083(portNumber, miiReg, value);
@@ -1923,7 +1921,7 @@ GT_BOOL qdSimWrite (GT_QD_DEV *dev,unsigned int portNumber , unsigned int miiReg
         case GT_FF_EG:
         case GT_FH_VPN:
 		/*lzh0808*/	
-		case GT_88E6321:
+		//case GT_88E6321:
             return qdSimWrite_6063(portNumber, miiReg, value);
         case GT_88E6083:
             return qdSimWrite_6083(portNumber, miiReg, value);
@@ -1968,11 +1966,11 @@ void qdSimInit(GT_DEVICE devId, int baseAddr)
     qdSimDev.vtuSize = 0;
 
     qdSimDev.qdSimPhyBase = baseAddr;
-    //qdSimDev.qdSimPortBase = baseAddr + 0x8;
-    //qdSimDev.qdSimGlobalRegBase = baseAddr + 0xF;
+    qdSimDev.qdSimPortBase = baseAddr + 0x8;
+    qdSimDev.qdSimGlobalRegBase = baseAddr + 0xF;
 //lzh0808
-	qdSimDev.qdSimPortBase = baseAddr + 0x10;
-    qdSimDev.qdSimGlobalRegBase = baseAddr + 0x1b;
+//	qdSimDev.qdSimPortBase = baseAddr + 0x10;
+ //   qdSimDev.qdSimGlobalRegBase = baseAddr + 0x1b;
 	printf("=[%s] %d >>==qdsiminit phybase=%x,qdSimPortBase=%x,qdSimGlobalRegBase=%x\r\n",__FILE__,__LINE__,qdSimDev.qdSimPhyBase,qdSimDev.qdSimPortBase,qdSimDev.qdSimGlobalRegBase);
 	switch(devId)
     {
@@ -2003,7 +2001,7 @@ void qdSimInit(GT_DEVICE devId, int baseAddr)
             qdSimDev.qdSimGlobalRegBase = 0x1b;
             break;
 		/*lzh0808 add*/
-		#if 1
+		#if 0
 		case GT_88E6321:
             qdSimDev.vtuSize = 64;
             qdSimDev.qdSimNumOfPhys = 2;

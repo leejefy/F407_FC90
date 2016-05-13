@@ -40,7 +40,7 @@
 
 #include "lwip/ip_addr.h"
 #include "lwip/err.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/igmp.h"
 #include "lwip/api.h"
 

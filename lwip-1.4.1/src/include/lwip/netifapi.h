@@ -32,7 +32,7 @@
 
 #if LWIP_NETIF_API /* don't build if not configured for use in lwipopts.h */
 
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/netif.h"
 #include "lwip/dhcp.h"
 #include "lwip/autoip.h"

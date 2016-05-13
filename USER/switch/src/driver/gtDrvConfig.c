@@ -336,6 +336,7 @@ GT_STATUS driverEnable
 
 GT_STATUS driverGetSerdesPort(GT_QD_DEV *dev, GT_U8* hwPort)
 {
+	//printf("= driverGetSerdesPort = dev->deviceId = %x ,hwPort= %x \r\n",dev->deviceId,*hwPort);
     switch(dev->deviceId)
     {
         case GT_88E6122:
@@ -394,7 +395,8 @@ GT_STATUS driverGetSerdesPort(GT_QD_DEV *dev, GT_U8* hwPort)
             }
             else
             {
-              *hwPort += 0xc;
+              //*hwPort += 0xc;//lzh0808
+			  *hwPort = 0xc;  // fixed bug by Alan Lee,at 2016-5-12, error was *hwPort += 0xc
             }
             break;
         default:
@@ -531,6 +533,7 @@ GT_U32 driverGetPhyID
         DBG_INFO(("cannot find Marvell Phy.\n"));
         return GT_INVALID_PHY;
     }
+	//DBG_INFO(("\r\n == driverGetPhyID = %x.\r\n",phyId));
 
     return phyId;
 }
@@ -745,12 +748,13 @@ GT_STATUS driverFindPhyInformation
     GT_U16 data;
 
     phyId = phyInfo->phyId;
-
+	//printf("=driverFindPhyInformation==phyId [ %x ] & PHY_MODEL_MASK = %x \r\n",phyId,phyId & PHY_MODEL_MASK);
     switch (phyId & PHY_MODEL_MASK)
     {
         case DEV_E3082:
         case DEV_MELODY:
         case DEV_SPINNAKERB1:
+			printf("\r =driverFindPhyInformation==11111 !!! \r\n");
                 phyInfo->anyPage = 0xFFFFFFFF;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_MAC_IF_LOOP|GT_PHY_EXTERNAL_LOOP|
@@ -770,6 +774,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_E104X:
+			printf("\r =driverFindPhyInformation==2222 !!! \r\n");
                 phyInfo->anyPage = 0xFFFFFFFF;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_GIGABIT|
                                 GT_PHY_MAC_IF_LOOP|GT_PHY_EXTERNAL_LOOP;
@@ -792,6 +797,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_E1111:
+			printf("\r =driverFindPhyInformation==33333 !!! \r\n");
                 phyInfo->anyPage = 0xFFF1FE0C;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -813,6 +819,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_E1112:
+			printf("\r =driverFindPhyInformation==444444 !!! \r\n");
                 phyInfo->anyPage = 0x1BC0780C;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -832,6 +839,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_E114X:
+			printf("\r =driverFindPhyInformation==55555 !!! \r\n");
                 phyInfo->anyPage = 0x2FF1FE0C;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -854,6 +862,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_E1149:
+			printf("\r =driverFindPhyInformation==66666 !!! \r\n");
                 phyInfo->anyPage = 0x2040FFFF;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -871,6 +880,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_G15LV:
+			printf("\r =driverFindPhyInformation==777 !!! \r\n");
                 if (dev->devName1 &DEV_88E6108)
                 {
                     phyInfo->anyPage = 0x0000FFFF;
@@ -908,6 +918,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_EC010:
+			printf("\r =driverFindPhyInformation==88 !!! \r\n");
                 phyInfo->anyPage = 0x2040780C;
                 phyInfo->flag = GT_PHY_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -924,6 +935,7 @@ GT_STATUS driverFindPhyInformation
                 break;
 
         case DEV_S15LV:
+			//printf("\r =driverFindPhyInformation==99 !!! \r\n");
                 phyInfo->anyPage = 0xFFFFFFFF;
                 phyInfo->flag = GT_PHY_SERDES_CORE|GT_PHY_GIGABIT|
                                 GT_PHY_MAC_IF_LOOP|GT_PHY_LINE_LOOP|GT_PHY_EXTERNAL_LOOP|
@@ -941,6 +953,7 @@ GT_STATUS driverFindPhyInformation
         case DEV_G65G:
         case DEV_E1540:
         case DEV_SERDES_P5:
+				printf("\r =driverFindPhyInformation==aa !!! \r\n");
                 phyInfo->anyPage = 0x0000FFFF;
                 phyInfo->flag = GT_PHY_ADV_VCT_CAPABLE|GT_PHY_DTE_CAPABLE|
                                 GT_PHY_EX_CABLE_STATUS|
@@ -957,6 +970,7 @@ GT_STATUS driverFindPhyInformation
                 phyInfo->pageType = GT_PHY_PAGE_WRITE_BACK;
                 break;
         default:
+			printf("\r =driverFindPhyInformation==return fail !!! \r\n");
             return GT_FAIL;
     }
                     

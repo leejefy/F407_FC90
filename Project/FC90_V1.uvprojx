@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F40XX</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Common;..\CORE;..\FWLIB\STM32F4x7_ETH_Driver\inc;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\USER;..\USER\usart;..\lwip-1.4.1\port\STM32F4x7;..\lwip-1.4.1\src\include;..\lwip-1.4.1\src\include\ipv4;..\lwip-1.4.1\src\include\lwip;..\lwip-1.4.1\port\STM32F4x7\Standalone;..\USER\LWIP_APP;..\USER\MALLOC;..\USER\MV88E63x;..\USER\switch\Include\h\driver;..\USER\switch\Include\h\msApi;..\USER\switch\Include\h\platform;..\USER\switch\sample\Include;..\USER\switch\Include;..\USER\switch\sample\Include</IncludePath>
+              <IncludePath>..\Common;..\CORE;..\FWLIB\STM32F4x7_ETH_Driver\inc;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\USER;..\USER\usart;..\lwip-1.4.1\src\include;..\lwip-1.4.1\src\include\ipv4;..\lwip-1.4.1\src\include\lwip;..\USER\LWIP_APP;..\USER\MALLOC;..\USER\MV88E63x;..\USER\switch\Include\h\driver;..\USER\switch\Include\h\msApi;..\USER\switch\Include\h\platform;..\USER\switch\Include;..\USER\switch\sample\Include;..\USER\TIMER;..\lwip-1.4.1</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -538,11 +538,6 @@
           <GroupName>LWIP</GroupName>
           <Files>
             <File>
-              <FileName>ethernetif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lwip-1.4.1\port\STM32F4x7\Standalone\ethernetif.c</FilePath>
-            </File>
-            <File>
               <FileName>autoip.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip-1.4.1\src\core\ipv4\autoip.c</FilePath>
@@ -633,11 +628,6 @@
               <FilePath>..\lwip-1.4.1\src\core\stats.c</FilePath>
             </File>
             <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lwip-1.4.1\src\core\sys.c</FilePath>
-            </File>
-            <File>
               <FileName>tcp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip-1.4.1\src\core\tcp.c</FilePath>
@@ -668,14 +658,19 @@
               <FilePath>..\lwip-1.4.1\src\netif\etharp.c</FilePath>
             </File>
             <File>
-              <FileName>ethernetif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lwip-1.4.1\src\netif\ethernetif.c</FilePath>
-            </File>
-            <File>
               <FileName>slipif.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip-1.4.1\src\netif\slipif.c</FilePath>
+            </File>
+            <File>
+              <FileName>lwip_sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip-1.4.1\src\core\lwip_sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>ethernetif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip-1.4.1\src\netif\ethernetif.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -703,24 +698,9 @@
               <FilePath>..\USER\usart\usart.c</FilePath>
             </File>
             <File>
-              <FileName>netconf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\LWIP_APP\netconf.c</FilePath>
-            </File>
-            <File>
-              <FileName>UDP_SERVER.C</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\LWIP_APP\UDP_SERVER.C</FilePath>
-            </File>
-            <File>
               <FileName>malloc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\MALLOC\malloc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4x7_eth_bsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\MV88E63x\stm32f4x7_eth_bsp.c</FilePath>
             </File>
             <File>
               <FileName>gtDrvConfig.c</FileName>
@@ -951,6 +931,41 @@
               <FileName>platformDeps.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\switch\src\platform\platformDeps.c</FilePath>
+            </File>
+            <File>
+              <FileName>ev96122mii.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MV88E63x\ev96122mii.c</FilePath>
+            </File>
+            <File>
+              <FileName>msApiInit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MV88E63x\msApiInit.c</FilePath>
+            </File>
+            <File>
+              <FileName>osSem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MV88E63x\osSem.c</FilePath>
+            </File>
+            <File>
+              <FileName>qdSim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MV88E63x\qdSim.c</FilePath>
+            </File>
+            <File>
+              <FileName>lwip_comm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\LWIP_APP\lwip_comm.c</FilePath>
+            </File>
+            <File>
+              <FileName>mv88e6xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MV88E63x\mv88e6xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\TIMER\timer.c</FilePath>
             </File>
           </Files>
         </Group>

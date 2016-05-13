@@ -106,30 +106,15 @@
 #define PHY_MISR               ((uint16_t)0x12) /* MII Interrupt Status and Misc. Control Register */
 #define PHY_MISR_LINK_INT_EN   ((uint16_t)0x0020) /* Enable Interrupt on change of link status */
 #define PHY_LINK_STATUS        ((uint16_t)0x2000) /* PHY link status interrupt mask */
-
-   /* Note : Common PHY registers are defined in stm32f4x7_eth.h file */
 #else
-
 /* The MV88E6321 PHY status register  */
-#define PHY_SR                 ((uint16_t)0x10) /* PHY status register Offset */
-#define PHY_SPEED_STATUS       ((uint16_t)0x0002) /* PHY Speed mask */
-#define PHY_DUPLEX_STATUS      ((uint16_t)0x0004) /* PHY Duplex mask */
-//#define PHY_SPEED_STATUS       ((uint16_t)0x0100) /* PHY Speed mask */
-//#define PHY_DUPLEX_STATUS      ((uint16_t)0x0400) /* PHY Duplex mask */
-
-/* The MV88E6321 PHY: MII Interrupt Control Register  */
-#define PHY_MICR               ((uint16_t)0x11) /* MII Interrupt Control Register */
-#define PHY_MICR_INT_EN        ((uint16_t)0x0002) /* PHY Enable interrupts */
-#define PHY_MICR_INT_OE        ((uint16_t)0x0001) /* PHY Enable output interrupt events */
-
-/* The MV88E6321 PHY: MII Interrupt Status and Misc. Control Register */
-#define PHY_MISR               ((uint16_t)0x12) /* MII Interrupt Status and Misc. Control Register */
-#define PHY_MISR_LINK_INT_EN   ((uint16_t)0x0020) /* Enable Interrupt on change of link status */
-#define PHY_LINK_STATUS        ((uint16_t)0x2000) /* PHY link status interrupt mask */
-
-   /* Note : Common PHY registers are defined in stm32f4x7_eth.h file */
+#define PHY_SR                 ((uint16_t)0x11) /* Reg.17, PHY Extended specific status register Offset */
+#define PHY_SPEED_STATUS       ((uint16_t)0xC000)  /*!< Configured information of Speed */
+#define PHY_DUPLEX_STATUS      ((uint16_t)0x2000) /*!< Configured information of Duplex: Full-duplex*/
 
 #endif
+
+   /* Note : Common PHY registers are defined in stm32f4x7_eth.h file */
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

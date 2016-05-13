@@ -40,7 +40,7 @@
 #include "lwip/netifapi.h"
 #include "lwip/pbuf.h"
 #include "lwip/api.h"
-#include "lwip/sys.h"
+#include "lwip/lwip_sys.h"
 #include "lwip/timers.h"
 #include "lwip/netif.h"
 
